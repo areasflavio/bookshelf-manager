@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return await queryInterface.createTable('users', {
+    return await queryInterface.createTable('files', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -13,18 +13,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
-      },
-      /** TODO */
-      avatar: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      /** */
-      password_hash: {
+      path: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -40,6 +29,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return await queryInterface.dropTable('users');
+    return await queryInterface.dropTable('files');
   },
 };

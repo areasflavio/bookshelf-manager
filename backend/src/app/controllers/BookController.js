@@ -1,13 +1,36 @@
+import * as Yup from 'yup';
+
 import Book from '../models/Book';
 
 class BookController {
   async index(request, response) {
-    const books = await Book.findAll();
+    const books = await Book.findAll({
+      attributes: [
+        'id',
+        'name',
+        'genre',
+        'publishing_company',
+        'cover',
+        'authors',
+      ],
+    });
 
     return response.json(books);
   }
 
   async store(request, response) {
+    const schema = Yup.object().shape({
+      name: Yup.string().required(),
+      genre: Yup.string().required(),
+      publishing_company: Yup.string().required(),
+      cover: Yup.string().required(),
+      authors: Yup.array().of(Yup.string()).required(),
+    });
+
+    if (!(await schema.isValid(request.body))) {
+      return response.status(400).json({ error: 'Validation fails' });
+    }
+
     const { name } = request.body;
 
     const bookExists = await Book.findOne({ where: { name } });
@@ -26,6 +49,18 @@ class BookController {
   }
 
   async update(request, response) {
+    const schema = Yup.object().shape({
+      name: Yup.string().required(),
+      genre: Yup.string().required(),
+      publishing_company: Yup.string().required(),
+      cover: Yup.string().required(),
+      authors: Yup.array().of(Yup.string()).required(),
+    });
+
+    if (!(await schema.isValid(request.body))) {
+      return response.status(400).json({ error: 'Validation fails' });
+    }
+
     const { id } = request.params;
 
     const book = await Book.findByPk(id);

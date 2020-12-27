@@ -15,6 +15,8 @@ class Book extends Model {
         modelName: 'book',
       }
     );
+
+    return this;
   }
 }
 
