@@ -1,6 +1,8 @@
 import * as Yup from 'yup';
 
 import Book from '../models/Book';
+import User from '../models/User';
+import File from '../models/File';
 
 class BookController {
   async index(request, response) {
@@ -13,6 +15,16 @@ class BookController {
         'cover',
         'authors',
       ],
+      include: {
+        model: User,
+        as: 'user',
+        attributes: ['name', 'email'],
+        include: {
+          model: File,
+          as: 'avatar',
+          attributes: ['path', 'url'],
+        },
+      },
     });
 
     return response.json(books);
@@ -39,9 +51,13 @@ class BookController {
       return response.status(400).json({ error: 'Book already registered' });
     }
 
-    const { id, genre, publishing_company, cover, authors } = await Book.create(
-      request.body
-    );
+    const {
+      id,
+      genre,
+      publishing_company,
+      cover,
+      authors,
+    } = await Book.create({ ...request.body, user_id: request.userId });
 
     return response
       .status(201)
@@ -75,11 +91,12 @@ class BookController {
       publishing_company,
       cover,
       authors,
-    } = await book.update(request.body);
+      user_id,
+    } = await book.update({ ...request.body, user_id: request.userId });
 
     return response
       .status(200)
-      .json({ id, name, genre, publishing_company, cover, authors });
+      .json({ id, name, genre, publishing_company, cover, authors, user_id });
   }
 
   async delete(request, response) {

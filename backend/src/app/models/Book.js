@@ -18,6 +18,13 @@ class Book extends Model {
 
     return this;
   }
+
+  static associate(models) {
+    this.belongsTo(models.user, {
+      foreignKey: 'user_id',
+      as: 'user',
+    });
+  }
 }
 
 export default Book;
