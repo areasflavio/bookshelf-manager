@@ -60,7 +60,7 @@ class UserController {
       return response.status(400).json({ error: 'Validation fails' });
     }
 
-    const { id } = request.params;
+    const id = request.userId;
     const { email, oldPassword } = request.body;
 
     const user = await User.findByPk(id);
@@ -87,7 +87,7 @@ class UserController {
   }
 
   async delete(request, response) {
-    const { id } = request.params;
+    const id = request.userId;
 
     const user = await User.findByPk(id);
 
