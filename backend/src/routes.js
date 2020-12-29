@@ -16,9 +16,8 @@ import UserController from './app/controllers/UserController';
 
 routes.post('/session', SessionController.store);
 
-routes.post('/files', upload.single('file'), FileController.store);
-
 routes.post('/users', UserController.store);
+routes.post('/files', upload.single('file'), FileController.store);
 
 routes.use(authMiddleware);
 
@@ -27,6 +26,7 @@ routes.put('/users', UserController.update);
 routes.delete('/users', UserController.delete);
 
 routes.get('/books', BookController.index);
+routes.get('/books/:id', BookController.show);
 routes.post('/books', BookController.store);
 routes.put('/books/:id', BookController.update);
 routes.delete('/books/:id', BookController.delete);

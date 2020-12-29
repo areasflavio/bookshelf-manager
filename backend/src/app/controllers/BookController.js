@@ -30,6 +30,35 @@ class BookController {
     return response.json(books);
   }
 
+  async show(request, response) {
+    const book = await Book.findByPk(request.params.id, {
+      attributes: [
+        'id',
+        'name',
+        'genre',
+        'publishing_company',
+        'cover',
+        'authors',
+      ],
+      include: {
+        model: User,
+        as: 'user',
+        attributes: ['name', 'email'],
+        include: {
+          model: File,
+          as: 'avatar',
+          attributes: ['path', 'url'],
+        },
+      },
+    });
+
+    if (!book) {
+      return response.status(400).json({ error: 'Book not found' });
+    }
+
+    return response.json(book);
+  }
+
   async store(request, response) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
@@ -48,7 +77,7 @@ class BookController {
     const bookExists = await Book.findOne({ where: { name } });
 
     if (bookExists) {
-      return response.status(400).json({ error: 'Book already registered' });
+      return response.status(401).json({ error: 'Book already registered' });
     }
 
     const {
@@ -82,7 +111,15 @@ class BookController {
     const book = await Book.findByPk(id);
 
     if (!book) {
-      return response.status(400).json({ error: 'Book not registered' });
+      return response.status(401).json({ error: 'Book not registered' });
+    }
+
+    const bookExists = await Book.findOne({
+      where: { name: request.body.name },
+    });
+
+    if (bookExists && book.id !== bookExists.id) {
+      return response.status(400).json({ error: 'Book already registered' });
     }
 
     const {
