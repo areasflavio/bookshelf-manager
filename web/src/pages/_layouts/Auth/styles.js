@@ -7,6 +7,8 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  padding: 16px;
 `;
 
 export const Content = styled.div`
@@ -35,15 +37,31 @@ export const Content = styled.div`
 
     width: 100%;
 
+    label {
+      font-weight: bold;
+      color: #686868;
+
+      margin: 16px 0 8px;
+    }
+
     input {
       width: 100%;
+      position: relative;
 
       color: #6c6c6c;
       height: 48px;
       padding: 0 16px;
-      margin: 0 0 16px;
       border: 1px solid #6c6c6c;
       border-radius: 4px;
+
+      &:hover,
+      &:focus {
+        border: 1px solid #32b77a;
+      }
+
+      &.has-error {
+        border: 1px solid #ff7057;
+      }
     }
 
     button {
@@ -52,7 +70,7 @@ export const Content = styled.div`
 
       height: 48px;
       padding: 0 16px;
-      margin: 0 0 16px;
+      margin-top: 16px;
       border-radius: 4px;
 
       color: #ffffff;
@@ -65,19 +83,34 @@ export const Content = styled.div`
         background: ${darken(0.05, '#32b77a')};
       }
     }
+
+    span {
+      font-weight: bold;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: #ff7057;
+
+      align-self: flex-start;
+
+      margin-top: 2px;
+    }
   }
 
-  strong {
-    color: #686868;
-    margin-right: 8px;
-  }
+  footer {
+    margin-top: 16px;
 
-  a {
-    color: #32b77a;
-    font-weight: bold;
+    strong {
+      color: #686868;
+      margin-right: 8px;
+    }
 
-    &:hover {
-      color: ${darken(0.05, '#32b77a')};
+    a {
+      color: #32b77a;
+      font-weight: bold;
+
+      &:hover {
+        color: ${darken(0.05, '#32b77a')};
+      }
     }
   }
 `;
