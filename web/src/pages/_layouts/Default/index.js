@@ -1,9 +1,16 @@
 import React from 'react';
 
+import Header from '../../../components/Header';
+
 // import { Container } from './styles';
 
 function Default() {
-  return <div />;
+  return (
+    <>
+      <Header />
+      <div />
+    </>
+  );
 }
 
 export default Default;

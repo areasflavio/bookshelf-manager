@@ -17,12 +17,12 @@ export default createGlobalStyle`
   }
 
   body {
-    background: #F6F6F6;
+    background: ${(props) => props.theme.colors.backgroundPrimary};
     -webkit-font-smoothing: antialiased !important;
   }
 
   body, input, button {
-    font: 14px 'Roboto', sans-serif;
+    font: 14px ${(props) => props.theme.fonts.text}, sans-serif;
   }
 
   a {

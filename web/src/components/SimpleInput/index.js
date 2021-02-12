@@ -33,7 +33,7 @@ function Input({ name, label, ...rest }) {
     <>
       <label htmlFor={fieldName}>{label}</label>
 
-      <Tooltip content={inputError} isOpen={inputError}>
+      <Tooltip content={inputError} isOpen={!!inputError}>
         <input
           id={fieldName}
           ref={inputRef}

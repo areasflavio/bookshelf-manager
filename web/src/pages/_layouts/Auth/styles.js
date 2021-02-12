@@ -17,16 +17,16 @@ export const Content = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 500px;
+  width: 512px;
 
-  background: #ffffff;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
   padding: 16px;
   border-radius: 4px;
 
   h1 {
-    font-family: 'Pacifico', cursive;
+    font-family: ${(props) => props.theme.fonts.title}, cursive;
     font-weight: normal;
-    color: #32b77a;
+    color: ${(props) => props.theme.colors.highlight};
     margin: 16px 0;
   }
 
@@ -39,7 +39,7 @@ export const Content = styled.div`
 
     label {
       font-weight: bold;
-      color: #686868;
+      color: ${(props) => props.theme.colors.secondary};
 
       margin: 16px 0 8px;
     }
@@ -47,40 +47,42 @@ export const Content = styled.div`
     input {
       width: 100%;
       position: relative;
+      background: ${(props) => props.theme.colors.backgroundSecondary};
 
-      color: #6c6c6c;
+      color: ${(props) => props.theme.colors.primary};
       height: 48px;
       padding: 0 16px;
-      border: 1px solid #6c6c6c;
+      border: 1px solid ${(props) => props.theme.colors.primary};
       border-radius: 4px;
 
       &:hover,
       &:focus {
-        border: 1px solid #32b77a;
+        border: 1px solid ${(props) => props.theme.colors.highlight};
       }
 
       &.has-error {
-        border: 1px solid #ff7057;
+        border: 1px solid ${(props) => props.theme.colors.error};
       }
     }
 
     button {
       width: 100%;
-      background: #32b77a;
+      background: ${(props) => props.theme.colors.highlight};
 
       height: 48px;
       padding: 0 16px;
       margin-top: 16px;
       border-radius: 4px;
 
-      color: #ffffff;
+      color: ${(props) => props.theme.colors.backgroundSecondary};
       font-weight: bold;
       font-size: 16px;
 
       transition: background 0.2s;
 
       &:hover {
-        background: ${darken(0.05, '#32b77a')};
+        background: ${(props) =>
+          darken(0.05, `${props.theme.colors.highlight}`)};
       }
     }
 
@@ -88,7 +90,7 @@ export const Content = styled.div`
       font-weight: bold;
       font-size: 10px;
       text-transform: uppercase;
-      color: #ff7057;
+      color: ${(props) => props.theme.colors.error};
 
       align-self: flex-start;
 
@@ -100,16 +102,16 @@ export const Content = styled.div`
     margin-top: 16px;
 
     strong {
-      color: #686868;
+      color: ${(props) => props.theme.colors.secondary};
       margin-right: 8px;
     }
 
     a {
-      color: #32b77a;
+      color: ${(props) => props.theme.colors.highlight};
       font-weight: bold;
 
       &:hover {
-        color: ${darken(0.05, '#32b77a')};
+        color: ${(props) => darken(0.05, `${props.theme.colors.highlight}`)};
       }
     }
   }
