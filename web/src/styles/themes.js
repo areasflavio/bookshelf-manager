@@ -1,9 +1,10 @@
 export const lightTheme = {
+  name: 'light',
   colors: {
-    backgroundPrimary: '#F6F6F6',
+    backgroundPrimary: '#EDFDF3',
     backgroundSecondary: '#ffffff',
-    primary: '#b5b5b5',
-    secondary: '#565656',
+    primary: '#9CB0A4',
+    secondary: '#394B40',
     highlight: '#32b77a',
     error: '#ff7057',
   },
@@ -14,10 +15,11 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
+  name: 'dark',
   colors: {
-    backgroundPrimary: '#1D2021',
+    backgroundPrimary: '#394B40',
     backgroundSecondary: '#181A1B',
-    primary: '#F6F6F6',
+    primary: '#EDFDF3',
     secondary: '#ffffff',
     highlight: '#32b77a',
     error: '#ff7057',

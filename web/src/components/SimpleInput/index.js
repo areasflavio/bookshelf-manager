@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useField } from '@unform/core';
 import PropTypes from 'prop-types';
 
@@ -7,9 +7,13 @@ import Tooltip from '../Tooltip';
 function Input({ name, label, ...rest }) {
   const inputRef = useRef(null);
 
-  const { fieldName, defaultValue, registerField, error } = useField(name);
-
-  const [inputError, setInputError] = useState(error);
+  const {
+    fieldName,
+    defaultValue,
+    registerField,
+    error,
+    clearError,
+  } = useField(name);
 
   useEffect(() => {
     registerField({
@@ -19,33 +23,23 @@ function Input({ name, label, ...rest }) {
     });
   }, [fieldName, registerField]);
 
-  function handleErrors() {
-    if (inputError !== '') {
-      setInputError('');
-    }
-  }
-
-  useEffect(() => {
-    setInputError(error);
-  }, [error]);
-
   return (
     <>
       <label htmlFor={fieldName}>{label}</label>
 
-      <Tooltip content={inputError} isOpen={!!inputError}>
+      <Tooltip content={error} isOpen={!!error}>
         <input
           id={fieldName}
           ref={inputRef}
           defaultValue={defaultValue}
-          className={inputError ? 'has-error' : ''}
-          onFocus={handleErrors}
+          className={error ? 'has-error' : ''}
+          onFocus={clearError}
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
         />
       </Tooltip>
 
-      {/* {inputError && <span className="error">{inputError}</span>} */}
+      {/* {error && <span className="error">{error}</span>} */}
     </>
   );
 }

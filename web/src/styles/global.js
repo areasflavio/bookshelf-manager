@@ -19,6 +19,10 @@ export default createGlobalStyle`
   body {
     background: ${(props) => props.theme.colors.backgroundPrimary};
     -webkit-font-smoothing: antialiased !important;
+
+    position: relative;
+
+    transition: background 1s;
   }
 
   body, input, button {

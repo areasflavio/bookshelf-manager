@@ -55,6 +55,8 @@ export const Content = styled.div`
       border: 1px solid ${(props) => props.theme.colors.primary};
       border-radius: 4px;
 
+      transition: border 0.2s;
+
       &:hover,
       &:focus {
         border: 1px solid ${(props) => props.theme.colors.highlight};
@@ -82,7 +84,7 @@ export const Content = styled.div`
 
       &:hover {
         background: ${(props) =>
-          darken(0.05, `${props.theme.colors.highlight}`)};
+          darken(0.08, `${props.theme.colors.highlight}`)};
       }
     }
 
@@ -111,7 +113,7 @@ export const Content = styled.div`
       font-weight: bold;
 
       &:hover {
-        color: ${(props) => darken(0.05, `${props.theme.colors.highlight}`)};
+        color: ${(props) => darken(0.08, `${props.theme.colors.highlight}`)};
       }
     }
   }
