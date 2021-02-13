@@ -1,24 +1,29 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import './config/ReactotronConfig';
 
+import ThemeWrapper from './Theme';
 import Routes from './routes';
 import history from './services/history';
 
-// eslint-disable-next-line no-unused-vars
-import { lightTheme, darkTheme } from './styles/themes';
+import { store, persistor } from './store';
 import GlobalStyle from './styles/global';
 
 function App() {
   return (
-    <Router history={history}>
-      <ThemeProvider theme={lightTheme}>
-        <GlobalStyle />
-        <Routes />
-      </ThemeProvider>
-    </Router>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <Router history={history}>
+          <ThemeWrapper>
+            <GlobalStyle />
+            <Routes />
+          </ThemeWrapper>
+        </Router>
+      </PersistGate>
+    </Provider>
   );
 }
 
