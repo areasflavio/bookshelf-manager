@@ -1,13 +1,20 @@
-/* eslint-disable no-console */
 import React, { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { Form } from '@unform/web';
 import { Link } from 'react-router-dom';
+import SyncLoader from 'react-spinners/SyncLoader';
+
+import { signInRequest } from '../../store/modules/auth/actions';
 
 import Input from '../../components/SimpleInput';
 
 function SignIn() {
   const formRef = useRef(null);
+
+  const dispatch = useDispatch();
+
+  const loading = useSelector((state) => state.auth.loading);
 
   async function handleSubmit(data) {
     try {
@@ -24,7 +31,9 @@ function SignIn() {
       });
 
       // Validation passed
-      console.log(data);
+      const { email, password } = data;
+
+      dispatch(signInRequest(email, password));
     } catch (err) {
       const validationErrors = {};
 
@@ -55,7 +64,19 @@ function SignIn() {
           placeholder="Your password"
         />
 
-        <button type="submit">Sign in</button>
+        <button type="submit">
+          {loading ? (
+            <SyncLoader
+              color="#fff"
+              loading={loading}
+              css={{ display: 'flex', margin: '8 auto' }}
+              size={16}
+              margin={2}
+            />
+          ) : (
+            <>Sign in</>
+          )}
+        </button>
       </Form>
 
       <footer>

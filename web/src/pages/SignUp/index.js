@@ -1,13 +1,17 @@
-/* eslint-disable no-console */
 import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { Form } from '@unform/web';
 import { Link } from 'react-router-dom';
+
+import { signUpRequest } from '../../store/modules/auth/actions';
 
 import Input from '../../components/SimpleInput';
 
 function SignIn() {
   const formRef = useRef(null);
+
+  const dispatch = useDispatch();
 
   async function handleSubmit(data) {
     try {
@@ -29,7 +33,9 @@ function SignIn() {
       });
 
       // Validation passed
-      console.log(data);
+      const { name, email, password, confirm_password } = data;
+
+      dispatch(signUpRequest(name, email, password, confirm_password));
     } catch (err) {
       const validationErrors = {};
 

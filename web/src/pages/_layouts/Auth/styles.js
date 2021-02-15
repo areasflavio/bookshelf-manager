@@ -69,10 +69,14 @@ export const Content = styled.div`
 
     button {
       width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       background: ${(props) => props.theme.colors.highlight};
 
       height: 48px;
-      padding: 0 16px;
+      padding: 4px 16px;
       margin-top: 16px;
       border-radius: 4px;
 
