@@ -9,7 +9,8 @@ class BookController {
     const books = await Book.findAll({
       attributes: [
         'id',
-        'name',
+        'title',
+        'synopsis',
         'genre',
         'publishing_company',
         'cover',
@@ -34,7 +35,8 @@ class BookController {
     const book = await Book.findByPk(request.params.id, {
       attributes: [
         'id',
-        'name',
+        'title',
+        'synopsis',
         'genre',
         'publishing_company',
         'cover',
@@ -61,8 +63,9 @@ class BookController {
 
   async store(request, response) {
     const schema = Yup.object().shape({
-      name: Yup.string().required(),
+      title: Yup.string().required(),
       genre: Yup.string().required(),
+      synopsis: Yup.string().required(),
       publishing_company: Yup.string().required(),
       cover: Yup.string().required(),
       authors: Yup.array().of(Yup.string()).required(),
@@ -72,9 +75,9 @@ class BookController {
       return response.status(400).json({ error: 'Validation fails' });
     }
 
-    const { name } = request.body;
+    const { title } = request.body;
 
-    const bookExists = await Book.findOne({ where: { name } });
+    const bookExists = await Book.findOne({ where: { title } });
 
     if (bookExists) {
       return response.status(401).json({ error: 'Book already registered' });
@@ -83,6 +86,7 @@ class BookController {
     const {
       id,
       genre,
+      synopsis,
       publishing_company,
       cover,
       authors,
@@ -90,13 +94,14 @@ class BookController {
 
     return response
       .status(201)
-      .json({ id, name, genre, publishing_company, cover, authors });
+      .json({ id, title, genre, synopsis, publishing_company, cover, authors });
   }
 
   async update(request, response) {
     const schema = Yup.object().shape({
-      name: Yup.string().required(),
+      title: Yup.string().required(),
       genre: Yup.string().required(),
+      synopsis: Yup.string().required(),
       publishing_company: Yup.string().required(),
       cover: Yup.string().required(),
       authors: Yup.array().of(Yup.string()).required(),
@@ -115,7 +120,7 @@ class BookController {
     }
 
     const bookExists = await Book.findOne({
-      where: { name: request.body.name },
+      where: { name: request.body.title },
     });
 
     if (bookExists && book.id !== bookExists.id) {
@@ -123,17 +128,25 @@ class BookController {
     }
 
     const {
-      name,
+      title,
       genre,
+      synopsis,
       publishing_company,
       cover,
       authors,
       user_id,
     } = await book.update({ ...request.body, user_id: request.userId });
 
-    return response
-      .status(200)
-      .json({ id, name, genre, publishing_company, cover, authors, user_id });
+    return response.status(200).json({
+      id,
+      title,
+      genre,
+      synopsis,
+      publishing_company,
+      cover,
+      authors,
+      user_id,
+    });
   }
 
   async delete(request, response) {

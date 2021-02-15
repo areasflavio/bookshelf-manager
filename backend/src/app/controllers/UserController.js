@@ -22,6 +22,7 @@ class UserController {
       name: Yup.string().required(),
       email: Yup.string().email().required(),
       password: Yup.string().required().min(6),
+      confirm_password: Yup.string().oneOf([Yup.ref('password'), null]),
     });
 
     if (!(await schema.isValid(request.body))) {
@@ -36,9 +37,12 @@ class UserController {
       return response.status(400).json({ error: 'User already exists' });
     }
 
-    const { id, name, avatar_id } = await User.create(request.body);
+    const { id, name } = await User.create({
+      ...request.body,
+      avatar_id: null,
+    });
 
-    return response.status(201).json({ id, name, email, avatar_id });
+    return response.status(201).json({ id, name, email });
   }
 
   async update(request, response) {

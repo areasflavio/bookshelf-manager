@@ -9,11 +9,15 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      name: {
+      title: {
         type: Sequelize.STRING,
         allowNull: false,
       },
       genre: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      synopsis: {
         type: Sequelize.STRING,
         allowNull: false,
       },
