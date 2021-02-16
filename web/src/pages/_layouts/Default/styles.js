@@ -26,3 +26,46 @@ export const Container = styled.div`
     }
   }
 `;
+
+export const Content = styled.div`
+  display: flex;
+
+  max-width: 88%;
+  margin: 32px auto;
+
+  nav {
+    display: flex;
+    flex-direction: column;
+
+    div {
+      display: flex;
+      flex-direction: column;
+
+      & + div {
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid ${(props) => props.theme.colors.primary};
+      }
+
+      span {
+        font-weight: bold;
+        text-transform: uppercase;
+        color: ${(props) => props.theme.colors.primary};
+
+        margin-bottom: 8px;
+      }
+
+      strong {
+        color: ${(props) => props.theme.colors.secondary};
+
+        & + strong {
+          margin-top: 12px;
+        }
+
+        & + button {
+          margin-top: 12px;
+        }
+      }
+    }
+  }
+`;

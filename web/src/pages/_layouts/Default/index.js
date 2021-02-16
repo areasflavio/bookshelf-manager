@@ -1,16 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Header from '../../../components/Header';
 
-import { Container } from './styles';
+import { Container, Content } from './styles';
 
-function Default() {
+function Default({ children }) {
   return (
     <Container>
       <Header />
-      <div />
+      <Content>{children}</Content>
     </Container>
   );
 }
+
+Default.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+};
 
 export default Default;

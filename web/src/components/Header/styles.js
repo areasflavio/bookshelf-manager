@@ -18,7 +18,7 @@ export const Content = styled.div`
   min-width: 88%;
   margin: 0 auto;
 
-  padding: 16px;
+  padding: 16px 0;
 
   h1 {
     font-family: ${(props) => props.theme.fonts.title}, cursive;
