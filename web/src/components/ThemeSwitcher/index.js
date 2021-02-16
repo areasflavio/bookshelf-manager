@@ -59,9 +59,9 @@ function ThemeSwitcher({ currentTheme }) {
         height={20}
         width={48}
         handleDiameter={24}
-        onColor={currentTheme.colors.backgroundSecondary}
+        onColor="#999"
         onHandleColor={currentTheme.colors.highlight}
-        offColor={currentTheme.colors.primary}
+        offColor="#999"
         offHandleColor={currentTheme.colors.highlight}
         boxShadow="0px 1px 4px rgba(0, 0, 0, 0.6)"
         activeBoxShadow="0px 0px 1px 8px rgba(0, 0, 0, 0.2)"
@@ -74,6 +74,7 @@ ThemeSwitcher.propTypes = {
   currentTheme: PropTypes.shape({
     name: PropTypes.string,
     colors: PropTypes.shape({
+      backgroundPrimary: PropTypes.string,
       backgroundSecondary: PropTypes.string,
       highlight: PropTypes.string,
       primary: PropTypes.string,

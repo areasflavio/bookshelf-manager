@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   profile: null,
 };
 
-function auth(state = INITIAL_STATE, action) {
+function user(state = INITIAL_STATE, action) {
   return produce(state, (draft) => {
     switch (action.type) {
       case '@auth/SIGN_IN_SUCCESS': {
@@ -16,4 +16,4 @@ function auth(state = INITIAL_STATE, action) {
   });
 }
 
-export default auth;
+export default user;

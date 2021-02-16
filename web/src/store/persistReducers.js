@@ -6,7 +6,7 @@ export default (reducers) => {
     {
       key: 'bookshelf',
       storage,
-      whitelist: ['auth', 'theme'],
+      whitelist: ['auth', 'theme', 'user'],
     },
     reducers
   );

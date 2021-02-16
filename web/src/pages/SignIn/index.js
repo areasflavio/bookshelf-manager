@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { Form } from '@unform/web';
 import { Link } from 'react-router-dom';
-import SyncLoader from 'react-spinners/SyncLoader';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 import { signInRequest } from '../../store/modules/auth/actions';
 
@@ -66,12 +66,11 @@ function SignIn() {
 
         <button type="submit">
           {loading ? (
-            <SyncLoader
+            <ClipLoader
               color="#fff"
               loading={loading}
-              css={{ display: 'flex', margin: '8 auto' }}
-              size={16}
-              margin={2}
+              css={{ display: 'flex' }}
+              size={32}
             />
           ) : (
             <>Sign in</>
