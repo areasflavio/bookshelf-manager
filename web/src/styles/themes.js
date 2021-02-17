@@ -26,6 +26,6 @@ export const darkTheme = {
   },
   fonts: {
     title: 'Pacifico',
-    text: 'Roboto',
+    text: 'Helvetica',
   },
 };
