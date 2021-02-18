@@ -6,26 +6,26 @@ import List from '../../../components/List';
 
 import { Container } from './styles';
 
-function AllBooks() {
+function MyBooks() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    async function getAllBooks() {
+    async function getMyBooks() {
       const response = await api.get('books');
 
       setBooks(response.data);
     }
 
-    getAllBooks();
+    getMyBooks();
   }, []);
 
   return (
     <Container>
-      <h1>All Books</h1>
+      <h1>My Books</h1>
 
       <List data={books} />
     </Container>
   );
 }
 
-export default AllBooks;
+export default MyBooks;

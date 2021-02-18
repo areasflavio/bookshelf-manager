@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  FiBarChart2,
-  FiCompass,
-  FiClock,
-  FiTag,
-  FiBookOpen,
-  FiStar,
-  FiAlignLeft,
-} from 'react-icons/fi';
+import { FiGrid, FiBook, FiTag, FiBookOpen, FiStar } from 'react-icons/fi';
 
 import { Container, Item } from './styles';
 
@@ -18,12 +10,8 @@ function SideNav() {
         <span>Browse</span>
 
         <Item>
-          <FiBarChart2 size={16} />
-          <strong>Top Books</strong>
-        </Item>
-        <Item>
-          <FiCompass size={16} />
-          <strong>Discover</strong>
+          <FiGrid size={16} />
+          <strong>All Books</strong>
         </Item>
         <Item>
           <FiTag size={16} />
@@ -34,6 +22,10 @@ function SideNav() {
         <span>Your Books</span>
 
         <Item>
+          <FiBook size={16} />
+          <strong>My Books</strong>
+        </Item>
+        <Item>
           <FiBookOpen size={16} />
           <strong>Reading</strong>
         </Item>
@@ -41,19 +33,8 @@ function SideNav() {
           <FiStar size={16} />
           <strong>Favorite Reads</strong>
         </Item>
-        <Item>
-          <FiClock size={16} />
-          <strong>History</strong>
-        </Item>
-      </section>
-      <section>
-        <span>Shelves</span>
 
-        <Item>
-          <FiAlignLeft size={16} />
-          <strong>Your Shelves</strong>
-        </Item>
-        <button type="button">Create a shelf</button>
+        <button type="button">Add book</button>
       </section>
     </Container>
   );
