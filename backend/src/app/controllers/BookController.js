@@ -19,7 +19,7 @@ class BookController {
       include: {
         model: User,
         as: 'user',
-        attributes: ['name', 'email'],
+        attributes: ['id', 'name', 'email'],
         include: {
           model: File,
           as: 'avatar',
