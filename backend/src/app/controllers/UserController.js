@@ -74,11 +74,7 @@ class UserController {
     }
 
     if (email !== user.email) {
-      const invalidEmail = await User.findOne({ where: { email } });
-
-      if (invalidEmail) {
-        return response.status(401).json({ error: 'Invalid email' });
-      }
+      return response.status(401).json({ error: "You can't change the email" });
     }
 
     if (oldPassword && !(await user.checkPassword(oldPassword))) {

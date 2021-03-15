@@ -17,9 +17,10 @@ import UserController from './app/controllers/UserController';
 routes.post('/session', SessionController.store);
 
 routes.post('/users', UserController.store);
-routes.post('/files', upload.single('file'), FileController.store);
 
 routes.use(authMiddleware);
+
+routes.post('/files', upload.single('file'), FileController.store);
 
 routes.get('/users', UserController.index);
 routes.put('/users', UserController.update);

@@ -6,6 +6,10 @@ import authConfig from '../../config/auth';
 export default async (request, response, next) => {
   const header = request.headers.authorization;
 
+  if (!header) {
+    return response.status(401).json({ error: 'Token not found' });
+  }
+
   const [, token] = header.split(' ');
 
   try {

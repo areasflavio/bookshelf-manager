@@ -4,11 +4,12 @@ class Book extends Model {
   static init(sequelize) {
     super.init(
       {
+        isbn: Sequelize.STRING,
         title: Sequelize.STRING,
         genre: Sequelize.STRING,
         synopsis: Sequelize.STRING,
         publishing_company: Sequelize.STRING,
-        cover: Sequelize.STRING,
+        pages: Sequelize.STRING,
         authors: Sequelize.ARRAY(Sequelize.STRING),
       },
       {
@@ -21,6 +22,11 @@ class Book extends Model {
   }
 
   static associate(models) {
+    this.belongsTo(models.file, {
+      foreignKey: 'cover_id',
+      as: 'cover',
+    });
+
     this.belongsTo(models.user, {
       foreignKey: 'user_id',
       as: 'user',

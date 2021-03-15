@@ -7,24 +7,21 @@ import File from '../models/File';
 class BookController {
   async index(request, response) {
     const books = await Book.findAll({
+      where: { user_id: request.userId },
       attributes: [
         'id',
+        'isbn',
         'title',
         'synopsis',
         'genre',
         'publishing_company',
-        'cover',
+        'pages',
         'authors',
       ],
       include: {
-        model: User,
-        as: 'user',
-        attributes: ['id', 'name', 'email'],
-        include: {
-          model: File,
-          as: 'avatar',
-          attributes: ['path', 'url'],
-        },
+        model: File,
+        as: 'cover',
+        attributes: ['path', 'url'],
       },
     });
 
@@ -63,21 +60,23 @@ class BookController {
 
   async store(request, response) {
     const schema = Yup.object().shape({
+      isbn: Yup.string().required(),
       title: Yup.string().required(),
       genre: Yup.string().required(),
-      synopsis: Yup.string().required(),
+      synopsis: Yup.string(),
       publishing_company: Yup.string().required(),
-      cover: Yup.string().required(),
+      pages: Yup.string().required(),
       authors: Yup.array().of(Yup.string()).required(),
+      cover_id: Yup.number().required(),
     });
 
     if (!(await schema.isValid(request.body))) {
       return response.status(400).json({ error: 'Validation fails' });
     }
 
-    const { title } = request.body;
+    const { isbn } = request.body;
 
-    const bookExists = await Book.findOne({ where: { title } });
+    const bookExists = await Book.findOne({ where: { isbn } });
 
     if (bookExists) {
       return response.status(401).json({ error: 'Book already registered' });
@@ -85,26 +84,38 @@ class BookController {
 
     const {
       id,
+      title,
       genre,
       synopsis,
       publishing_company,
-      cover,
+      cover_id,
+      pages,
       authors,
     } = await Book.create({ ...request.body, user_id: request.userId });
 
-    return response
-      .status(201)
-      .json({ id, title, genre, synopsis, publishing_company, cover, authors });
+    return response.status(201).json({
+      id,
+      isbn,
+      title,
+      genre,
+      synopsis,
+      publishing_company,
+      cover_id,
+      pages,
+      authors,
+    });
   }
 
   async update(request, response) {
     const schema = Yup.object().shape({
+      isbn: Yup.string().required(),
       title: Yup.string().required(),
       genre: Yup.string().required(),
-      synopsis: Yup.string().required(),
+      synopsis: Yup.string(),
       publishing_company: Yup.string().required(),
-      cover: Yup.string().required(),
+      pages: Yup.string().required(),
       authors: Yup.array().of(Yup.string()).required(),
+      cover_id: Yup.number().required(),
     });
 
     if (!(await schema.isValid(request.body))) {
@@ -116,11 +127,19 @@ class BookController {
     const book = await Book.findByPk(id);
 
     if (!book) {
-      return response.status(401).json({ error: 'Book not registered' });
+      return response.status(400).json({ error: 'Book not registered' });
     }
 
+    if (book.user_id !== request.userId) {
+      return response
+        .status(401)
+        .json({ error: "You're not allowed to edit this book" });
+    }
+
+    const { isbn } = request.body;
+
     const bookExists = await Book.findOne({
-      where: { name: request.body.title },
+      where: { isbn },
     });
 
     if (bookExists && book.id !== bookExists.id) {
@@ -134,18 +153,19 @@ class BookController {
       publishing_company,
       cover,
       authors,
-      user_id,
+      pages,
     } = await book.update({ ...request.body, user_id: request.userId });
 
     return response.status(200).json({
       id,
+      isbn,
       title,
       genre,
       synopsis,
       publishing_company,
       cover,
       authors,
-      user_id,
+      pages,
     });
   }
 
@@ -158,7 +178,15 @@ class BookController {
       return response.status(400).json({ error: 'Book not registered' });
     }
 
-    return response.json({ message: 'ok' });
+    if (book.user_id !== request.userId) {
+      return response
+        .status(401)
+        .json({ error: "You're not allowed to edit this book" });
+    }
+
+    await book.destroy();
+
+    return response.json();
   }
 }
 
