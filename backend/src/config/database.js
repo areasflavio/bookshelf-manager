@@ -2,7 +2,7 @@ module.exports = {
   dialect: 'postgres',
   host: 'localhost',
   username: 'postgres',
-  password: 'postgres',
+  password: 'docker',
   database: 'bookshelf_manager',
   define: {
     timestamps: true,

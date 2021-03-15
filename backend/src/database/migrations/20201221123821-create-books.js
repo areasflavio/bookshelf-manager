@@ -9,6 +9,10 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
+      isbn: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       title: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -18,20 +22,34 @@ module.exports = {
         allowNull: false,
       },
       synopsis: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        type: Sequelize.TEXT,
+        allowNull: true,
       },
       publishing_company: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      cover: {
+      pages: {
         type: Sequelize.STRING,
         allowNull: false,
       },
       authors: {
         type: Sequelize.ARRAY(Sequelize.STRING),
         allowNull: false,
+      },
+      cover_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'files', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+        allowNull: true,
+      },
+      user_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'users', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+        allowNull: true,
       },
       created_at: {
         type: Sequelize.DATE,
