@@ -81,9 +81,19 @@ class UserController {
       return response.status(401).json({ error: 'Password does not match' });
     }
 
-    const { name, avatar_id } = await user.update(request.body);
+    await user.update(request.body);
 
-    return response.json({ id, email, name, avatar_id });
+    const { name, avatar } = await User.findByPk(id, {
+      include: [
+        {
+          model: File,
+          as: 'avatar',
+          attributes: ['id', 'path', 'url'],
+        },
+      ],
+    });
+
+    return response.json({ id, email, name, avatar });
   }
 
   async delete(request, response) {
