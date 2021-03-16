@@ -49,7 +49,7 @@ export const Content = styled.div`
       position: relative;
       background: ${(props) => props.theme.colors.backgroundSecondary};
 
-      color: ${(props) => props.theme.colors.primary};
+      color: ${(props) => props.theme.colors.secondary};
       height: 48px;
       padding: 0 16px;
       border: 1px solid ${(props) => props.theme.colors.primary};
