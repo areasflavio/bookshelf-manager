@@ -18,7 +18,7 @@ export const Content = styled.div`
   min-width: 88%;
   margin: 0 auto;
 
-  padding: 16px 0;
+  padding: 1rem 0;
 
   h1 {
     font-family: ${(props) => props.theme.fonts.title}, cursive;
@@ -26,15 +26,15 @@ export const Content = styled.div`
     color: ${(props) => props.theme.colors.highlight};
 
     border-right: 1px solid ${(props) => props.theme.colors.backgroundPrimary};
-    padding-right: 32px;
-    margin-right: 32px;
+    padding-right: 2rem;
+    margin-right: 2rem;
   }
 
   svg {
     color: ${(props) => props.theme.colors.primary};
 
     & + svg {
-      margin-left: 16px;
+      margin-left: 1rem;
     }
   }
 
@@ -44,11 +44,11 @@ export const Content = styled.div`
     width: 100%;
 
     border: 1px solid ${(props) => props.theme.colors.backgroundPrimary};
-    padding: 8px;
-    border-radius: 16px;
+    padding: 0.5rem;
+    border-radius: 1rem;
 
     input {
-      margin-left: 4px;
+      margin-left: 0.25rem;
       border: none;
 
       color: ${(props) => props.theme.colors.primary};
@@ -85,19 +85,19 @@ export const Info = styled.div`
   min-height: 100%;
 
   border-right: 1px solid ${(props) => props.theme.colors.backgroundPrimary};
-  padding-right: 32px;
-  margin: 0 32px;
+  padding-right: 2rem;
+  margin: 0 2rem;
 
   strong {
     color: ${(props) => props.theme.colors.primary};
-    font-size: 12px;
+    font-size: 0.75rem;
 
-    margin-right: 8px;
+    margin-right: 0.5rem;
   }
 
   img {
-    width: 32px;
-    height: 32px;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
 
     object-fit: cover;

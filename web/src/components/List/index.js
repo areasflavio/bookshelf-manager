@@ -7,11 +7,11 @@ function List({ data }) {
   return (
     <Container>
       {data.map((book) => (
-        <li>
+        <li key={book.id}>
           <img
             src={
               book.cover
-                ? book.cover
+                ? book.cover.url
                 : 'https://via.placeholder.com/120x180?text=No+Cover+Available'
             }
             alt={book.title}
@@ -26,9 +26,14 @@ function List({ data }) {
 
 List.propTypes = {
   data: PropTypes.arrayOf({
-    cover: PropTypes.string,
-    title: PropTypes.string,
-    author: PropTypes.arrayOf(PropTypes.string),
+    book: PropTypes.shape({
+      id: PropTypes.number,
+      cover: PropTypes.shape({
+        url: PropTypes.string,
+      }),
+      title: PropTypes.string,
+      author: PropTypes.arrayOf(PropTypes.string),
+    }),
   }).isRequired,
 };
 
