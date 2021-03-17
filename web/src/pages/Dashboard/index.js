@@ -2,7 +2,7 @@ import React from 'react';
 
 import SideNav from '../../components/SideNav';
 
-import BookForm from './BookForm';
+import AllBooks from './AllBooks';
 
 function Dashboard() {
   return (
@@ -10,7 +10,7 @@ function Dashboard() {
       <SideNav />
 
       <main style={{ flex: 1 }}>
-        <BookForm />
+        <AllBooks />
       </main>
     </>
   );
