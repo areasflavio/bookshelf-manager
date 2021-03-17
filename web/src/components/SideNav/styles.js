@@ -10,18 +10,18 @@ export const Container = styled.nav`
     flex-direction: column;
 
     & + section {
-      margin-top: 16px;
-      padding-top: 16px;
+      margin-top: 1rem;
+      padding-top: 1rem;
       border-top: 1px solid ${(props) => props.theme.colors.primary};
     }
 
     span {
-      font-size: 12px;
+      font-size: 0.75rem;
       font-weight: bold;
       text-transform: uppercase;
       color: ${(props) => props.theme.colors.primary};
 
-      margin-bottom: 8px;
+      margin-bottom: 0.5rem;
     }
   }
 `;
@@ -32,17 +32,17 @@ export const Item = styled.div`
 
   color: ${(props) => props.theme.colors.secondary};
 
-  padding: 4px;
-  border-radius: 4px;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
 
   strong {
-    margin-left: 8px;
-    font-size: 12px;
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
   }
 
   & + button,
   & + div {
-    margin-top: 8px;
+    margin-top: 0.5rem;
   }
 
   transition: background 0.2s;

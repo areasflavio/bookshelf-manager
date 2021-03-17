@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  padding: 16px;
+  padding: 1rem;
 `;
 
 export const Content = styled.div`
@@ -17,17 +17,17 @@ export const Content = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 512px;
+  width: 32rem;
 
   background: ${(props) => props.theme.colors.backgroundSecondary};
-  padding: 16px;
-  border-radius: 4px;
+  padding: 1rem;
+  border-radius: 0.25rem;
 
   h1 {
     font-family: ${(props) => props.theme.fonts.title}, cursive;
     font-weight: normal;
     color: ${(props) => props.theme.colors.highlight};
-    margin: 16px 0;
+    margin: 1rem 0;
   }
 
   form {
@@ -41,7 +41,7 @@ export const Content = styled.div`
       font-weight: bold;
       color: ${(props) => props.theme.colors.secondary};
 
-      margin: 16px 0 8px;
+      margin: 1rem 0 0.5rem;
     }
 
     input {
@@ -50,10 +50,10 @@ export const Content = styled.div`
       background: ${(props) => props.theme.colors.backgroundSecondary};
 
       color: ${(props) => props.theme.colors.secondary};
-      height: 48px;
-      padding: 0 16px;
+      height: 3rem;
+      padding: 0 1rem;
       border: 1px solid ${(props) => props.theme.colors.primary};
-      border-radius: 4px;
+      border-radius: 0.25rem;
 
       transition: border 0.2s;
 
@@ -75,14 +75,14 @@ export const Content = styled.div`
 
       background: ${(props) => props.theme.colors.highlight};
 
-      height: 48px;
-      padding: 4px 16px;
-      margin-top: 16px;
-      border-radius: 4px;
+      height: 3rem;
+      padding: 0.25rem 1rem;
+      margin-top: 1rem;
+      border-radius: 0.25rem;
 
       color: ${(props) => props.theme.colors.backgroundSecondary};
       font-weight: bold;
-      font-size: 16px;
+      font-size: 1rem;
 
       transition: background 0.2s;
 
@@ -94,22 +94,22 @@ export const Content = styled.div`
 
     span {
       font-weight: bold;
-      font-size: 10px;
+      font-size: 0.625rem;
       text-transform: uppercase;
       color: ${(props) => props.theme.colors.error};
 
       align-self: flex-start;
 
-      margin-top: 2px;
+      margin-top: 0.125rem;
     }
   }
 
   footer {
-    margin-top: 16px;
+    margin-top: 1rem;
 
     strong {
       color: ${(props) => props.theme.colors.secondary};
-      margin-right: 8px;
+      margin-right: 0.5rem;
     }
 
     a {

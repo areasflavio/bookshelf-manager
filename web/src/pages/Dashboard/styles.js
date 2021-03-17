@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  margin-left: 32px;
+  margin-left: 2rem;
 
   h1 {
     color: ${(props) => props.theme.colors.primary};

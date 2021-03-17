@@ -9,23 +9,23 @@ export const Container = styled.ul`
     display: flex;
     flex-direction: column;
 
-    max-width: 120px;
-    margin: 8px;
+    max-width: 7.5rem;
+    margin: 0.5rem;
 
     img {
-      height: 180px;
-      width: 120px;
-      border-radius: 8px;
+      height: 11.25rem;
+      width: 7.5rem;
+      border-radius: 0.5rem;
     }
 
     strong {
       color: ${(props) => props.theme.colors.secondary};
-      margin: 8px 0 2px;
+      margin: 0.5rem 0 0.125rem;
 
       overflow: hidden;
       text-overflow: ellipsis;
-      line-height: 16px;
-      max-height: 32px;
+      line-height: 1rem;
+      max-height: 2rem;
     }
 
     small {

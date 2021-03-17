@@ -12,8 +12,8 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
 
-    padding: 8px 16px;
-    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
 
     color: ${(props) => props.theme.colors.backgroundSecondary};
     font-weight: bold;
@@ -52,5 +52,5 @@ export const Content = styled.div`
   display: flex;
 
   max-width: 88%;
-  margin: 32px auto;
+  margin: 2rem auto;
 `;

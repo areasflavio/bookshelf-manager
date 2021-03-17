@@ -7,8 +7,8 @@ export const Container = styled.div`
 export const Content = styled.div`
   background: #ff7057;
 
-  padding: 8px;
-  border-radius: 4px;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
 
   font-weight: bold;
   color: #ffffff;

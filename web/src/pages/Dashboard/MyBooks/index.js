@@ -4,7 +4,7 @@ import api from '../../../services/api';
 
 import List from '../../../components/List';
 
-import { Container } from './styles';
+import { Container } from '../styles';
 
 function MyBooks() {
   const [books, setBooks] = useState([]);
