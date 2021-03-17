@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Tooltip from '../Tooltip';
 import { Container } from './styles';
 
-function Input({ name, label, ...rest }) {
+function TextAreaInput({ name, label, ...rest }) {
   const inputRef = useRef(null);
 
   const {
@@ -29,12 +29,13 @@ function Input({ name, label, ...rest }) {
       <label htmlFor={fieldName}>{label}</label>
 
       <Tooltip content={error} isOpen={!!error}>
-        <input
+        <textarea
           id={fieldName}
           ref={inputRef}
           defaultValue={defaultValue}
           className={error ? 'has-error' : ''}
           onFocus={clearError}
+          spellCheck={false}
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
         />
@@ -45,14 +46,14 @@ function Input({ name, label, ...rest }) {
   );
 }
 
-Input.propTypes = {
+TextAreaInput.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
 };
 
-Input.defaultProps = {
+TextAreaInput.defaultProps = {
   name: '',
   label: '',
 };
 
-export default Input;
+export default TextAreaInput;

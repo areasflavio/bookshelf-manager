@@ -21,7 +21,8 @@ export const Container = styled.div`
 
     transition: background 0.2s;
 
-    &[type='submit'] {
+    &[type='submit'],
+    &[type='button'] {
       background: ${(props) => props.theme.colors.highlight};
 
       &:hover {

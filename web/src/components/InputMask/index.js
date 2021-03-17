@@ -1,17 +1,16 @@
 import React, { useRef, useEffect } from 'react';
+import ReactInputMask from 'react-input-mask';
 import { useField } from '@unform/core';
 import PropTypes from 'prop-types';
 
 import Tooltip from '../Tooltip';
-import { Container } from './styles';
 
-function Input({ name, label, ...rest }) {
+function InputMask({ name, label, ...rest }) {
   const inputRef = useRef(null);
-
   const {
     fieldName,
-    defaultValue,
     registerField,
+    defaultValue,
     error,
     clearError,
   } = useField(name);
@@ -21,16 +20,22 @@ function Input({ name, label, ...rest }) {
       name: fieldName,
       ref: inputRef.current,
       path: 'value',
+      setValue(ref, value) {
+        ref.setInputValue(value);
+      },
+      clearValue(ref) {
+        ref.setInputValue('');
+      },
     });
   }, [fieldName, registerField]);
 
   return (
-    <Container>
-      <label htmlFor={fieldName}>{label}</label>
+    <div>
+      <label htmlFor={name}>{label}</label>
 
       <Tooltip content={error} isOpen={!!error}>
-        <input
-          id={fieldName}
+        <ReactInputMask
+          id={name}
           ref={inputRef}
           defaultValue={defaultValue}
           className={error ? 'has-error' : ''}
@@ -39,20 +44,19 @@ function Input({ name, label, ...rest }) {
           {...rest}
         />
       </Tooltip>
-
-      {/* {error && <span className="error">{error}</span>} */}
-    </Container>
+    </div>
   );
 }
 
-Input.propTypes = {
-  name: PropTypes.string,
+InputMask.propTypes = {
+  name: PropTypes.string.isRequired,
   label: PropTypes.string,
+  rest: PropTypes.oneOfType(PropTypes.string, PropTypes.bool, PropTypes.func),
 };
 
-Input.defaultProps = {
-  name: '',
+InputMask.defaultProps = {
   label: '',
+  rest: {},
 };
 
-export default Input;
+export default InputMask;

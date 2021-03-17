@@ -1,13 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
-import { Form } from '@unform/web';
+
+import { StyledForm } from '../../styles/form';
 
 import { updateProfileRequest } from '../../store/modules/user/actions';
 import { signOut } from '../../store/modules/auth/actions';
 
 import Input from '../../components/SimpleInput';
-import AvatarInput from './AvatarInput';
+import FileInput from '../../components/FileInput';
 
 import { Content } from '../_layouts/Auth/styles';
 import { Container, ButtonGroup } from './styles';
@@ -67,18 +68,9 @@ function Profile() {
 
   return (
     <Container>
-      {/* <img
-        src={
-          profile.avatar
-            ? profile.avatar.url
-            : 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.MVzzVBGqNE35Ksyya4rnsQHaHa%26pid%3DApi&f=1'
-        }
-        alt={profile.name}
-      /> */}
-
       <Content>
-        <Form ref={formRef} onSubmit={handleSubmit} initialData={profile}>
-          <AvatarInput name="avatar_id" />
+        <StyledForm ref={formRef} onSubmit={handleSubmit} initialData={profile}>
+          <FileInput name="avatar_id" fieldName="avatar" />
 
           <Input name="name" label="Name" type="text" placeholder="Your name" />
           <Input
@@ -134,7 +126,7 @@ function Profile() {
           <button type="button" className="logout" onClick={handleLogout}>
             Logout
           </button>
-        </Form>
+        </StyledForm>
       </Content>
     </Container>
   );

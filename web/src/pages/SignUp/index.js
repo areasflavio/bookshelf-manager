@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
-import { Form } from '@unform/web';
 import { Link } from 'react-router-dom';
+
+import { StyledForm } from '../../styles/form';
 
 import { signUpRequest } from '../../store/modules/auth/actions';
 
@@ -52,7 +53,7 @@ function SignIn() {
     <>
       <h1>Bookshelf Manager</h1>
 
-      <Form ref={formRef} onSubmit={handleSubmit}>
+      <StyledForm ref={formRef} onSubmit={handleSubmit}>
         <Input name="name" label="Name" type="text" placeholder="Your name" />
         <Input
           name="email"
@@ -74,7 +75,7 @@ function SignIn() {
         />
 
         <button type="submit">Sign up</button>
-      </Form>
+      </StyledForm>
 
       <footer>
         <strong>Already have a account?</strong>

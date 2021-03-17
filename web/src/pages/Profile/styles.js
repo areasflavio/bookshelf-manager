@@ -10,17 +10,32 @@ export const Container = styled.div`
 
   border-radius: 0.25rem;
 
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+  }
+
   img {
     height: 20rem;
     width: 20rem;
     border-radius: 50%;
   }
 
-  div > form > span {
+  span {
+    width: 100%;
+
     color: ${(props) => props.theme.colors.secondary};
+    font-weight: bold;
+    font-size: 0.625rem;
+    text-transform: uppercase;
     text-decoration: underline;
 
-    margin-top: 1rem;
+    margin: 1rem 0 0.5rem;
+
+    align-self: flex-start;
 
     &:hover {
       cursor: pointer;
