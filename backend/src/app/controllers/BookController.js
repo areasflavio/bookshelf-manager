@@ -30,24 +30,21 @@ class BookController {
 
   async show(request, response) {
     const book = await Book.findByPk(request.params.id, {
+      where: { user_id: request.userId },
       attributes: [
         'id',
+        'isbn',
         'title',
         'synopsis',
         'genre',
         'publishing_company',
-        'cover',
+        'pages',
         'authors',
       ],
       include: {
-        model: User,
-        as: 'user',
-        attributes: ['name', 'email'],
-        include: {
-          model: File,
-          as: 'avatar',
-          attributes: ['path', 'url'],
-        },
+        model: File,
+        as: 'cover',
+        attributes: ['id', 'path', 'url'],
       },
     });
 
@@ -115,7 +112,7 @@ class BookController {
       publishing_company: Yup.string().required(),
       pages: Yup.string().required(),
       authors: Yup.array().of(Yup.string()).required(),
-      cover_id: Yup.number().required(),
+      // cover_id: Yup.number(),
     });
 
     if (!(await schema.isValid(request.body))) {
