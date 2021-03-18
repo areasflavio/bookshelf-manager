@@ -9,7 +9,6 @@ import SignUp from '../pages/SignUp';
 
 import Profile from '../pages/Profile';
 import Dashboard from '../pages/Dashboard';
-import Books from '../pages/Books';
 
 function Routes() {
   return (
@@ -20,9 +19,7 @@ function Routes() {
 
       <Route path="/profile" component={Profile} isPrivate />
       <Route path="/dashboard" component={Dashboard} isPrivate />
-
-      <Route path="/books" component={Books} isPrivate />
-      <Route path="/books/:bookId" component={Books} isPrivate />
+      <Route path="/books" component={Dashboard} isPrivate />
     </Switch>
   );
 }

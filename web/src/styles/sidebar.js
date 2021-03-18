@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 import { Link } from 'react-router-dom';
 
-export const Container = styled.nav`
+export const Sidebar = styled.nav`
   display: flex;
   flex-direction: column;
 
