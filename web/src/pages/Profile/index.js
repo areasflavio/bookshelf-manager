@@ -84,8 +84,8 @@ function Profile() {
           <span
             role="button"
             tabIndex={0}
-            onClick={() => setChangePassword(!changePassword)}
             onKeyPress={() => {}}
+            onClick={() => setChangePassword(!changePassword)}
           >
             Change password
           </span>

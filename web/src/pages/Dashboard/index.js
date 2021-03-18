@@ -59,6 +59,12 @@ const routes = [
   },
   {
     path: '/books/form',
+    exact: true,
+    sidebar: <></>,
+    main: <BookForm />,
+  },
+  {
+    path: '/books/form/:id',
     exact: false,
     sidebar: <></>,
     main: <BookForm />,

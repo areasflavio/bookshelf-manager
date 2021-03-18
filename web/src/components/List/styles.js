@@ -16,6 +16,13 @@ export const Container = styled.ul`
       height: 11.25rem;
       width: 7.5rem;
       border-radius: 0.5rem;
+
+      transition: all 0.2s;
+
+      &:hover {
+        cursor: pointer;
+        filter: opacity(0.7);
+      }
     }
 
     strong {

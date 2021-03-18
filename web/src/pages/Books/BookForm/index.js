@@ -1,7 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 
+import { useParams } from 'react-router-dom';
 import api from '../../../services/api';
 import history from '../../../services/history';
 
@@ -15,6 +16,22 @@ import { Container, LineGroup } from './styles';
 
 function BookForm() {
   const formRef = useRef(null);
+
+  const { id } = useParams();
+
+  const [bookData, setBookData] = useState({});
+
+  useEffect(() => {
+    async function getBook() {
+      const response = await api.get(`/books/${id}`);
+
+      setBookData(response.data);
+    }
+
+    if (id) {
+      getBook();
+    }
+  }, [id]);
 
   async function handleSubmit(data) {
     try {
@@ -39,12 +56,16 @@ function BookForm() {
 
       const submitData = {
         ...data,
-        cover_id: Number(data.cover_id),
+        cover_id: Number(data.cover_id) || bookData.cover.id,
         authors: data.authors.split(','),
       };
 
       // Validation passed
-      await api.post('/books', submitData);
+      if (id) {
+        await api.put(`/books/${id}`, submitData);
+      } else {
+        await api.post('/books', submitData);
+      }
 
       toast.success('Book registered with success!');
     } catch (err) {
@@ -63,7 +84,7 @@ function BookForm() {
 
   return (
     <Container>
-      <StyledForm ref={formRef} onSubmit={handleSubmit}>
+      <StyledForm ref={formRef} onSubmit={handleSubmit} initialData={bookData}>
         <FileInput name="cover_id" fieldName="cover" />
 
         <section>
@@ -75,7 +96,14 @@ function BookForm() {
               type="text"
               placeholder=""
             />
-            <InputMask name="isbn" label="ISBN" mask="999-9999999999" />
+
+            <InputMask
+              name="isbn"
+              label="ISBN"
+              mask="999-9999999999"
+              maskPlaceholder={null}
+              placeholder="__-__________"
+            />
           </LineGroup>
 
           <LineGroup template="6fr 1fr">

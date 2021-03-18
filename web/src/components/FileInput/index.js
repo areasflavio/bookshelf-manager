@@ -14,6 +14,12 @@ function FileInput({ fieldName }) {
 
   const [placeImg, setPlaceImg] = useState('');
 
+  useEffect(() => {
+    if (defaultValue) {
+      setPreview(defaultValue.url);
+    }
+  }, [defaultValue]);
+
   const ref = useRef();
 
   useEffect(() => {

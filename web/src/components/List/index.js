@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Container } from './styles';
+import history from '../../services/history';
 
 function List({ data }) {
   return (
@@ -9,6 +10,12 @@ function List({ data }) {
       {data.map((book) => (
         <li key={book.id}>
           <img
+            // eslint-disable-next-line no-console
+            onClick={() => history.push(`/books/form/${book.id}`)}
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+            role="button"
+            tabIndex={0}
+            onKeyPress={() => {}}
             src={
               book.cover
                 ? book.cover.url
@@ -34,7 +41,11 @@ List.propTypes = {
       title: PropTypes.string,
       author: PropTypes.arrayOf(PropTypes.string),
     }),
-  }).isRequired,
+  }),
+};
+
+List.defaultProps = {
+  data: {},
 };
 
 export default List;

@@ -7,6 +7,7 @@ import Tooltip from '../Tooltip';
 
 function InputMask({ name, label, ...rest }) {
   const inputRef = useRef(null);
+
   const {
     fieldName,
     registerField,
@@ -37,7 +38,7 @@ function InputMask({ name, label, ...rest }) {
         <ReactInputMask
           id={name}
           ref={inputRef}
-          defaultValue={defaultValue}
+          defaultValue={defaultValue && defaultValue}
           className={error ? 'has-error' : ''}
           onFocus={clearError}
           // eslint-disable-next-line react/jsx-props-no-spreading
@@ -51,12 +52,17 @@ function InputMask({ name, label, ...rest }) {
 InputMask.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
-  rest: PropTypes.oneOfType(PropTypes.string, PropTypes.bool, PropTypes.func),
+  rest: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.func,
+    PropTypes.element,
+  ]),
 };
 
 InputMask.defaultProps = {
   label: '',
-  rest: {},
+  rest: null,
 };
 
 export default InputMask;
