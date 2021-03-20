@@ -1,17 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Container } from './styles';
-import history from '../../services/history';
+import BookModal from '../BookModal';
+// import history from '../../services/history';
 
 function List({ data }) {
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [bookModalId, setBookModalId] = useState(null);
+
+  function openModal(bookId) {
+    setBookModalId(bookId);
+
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return (
     <Container>
       {data.map((book) => (
         <li key={book.id}>
+          <BookModal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            bookId={bookModalId}
+          />
           <img
-            // eslint-disable-next-line no-console
-            onClick={() => history.push(`/books/form/${book.id}`)}
+            // onClick={() => history.push(`/books/form/${book.id}`)}
+            onClick={() => openModal(book.id)}
             // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
             role="button"
             tabIndex={0}
@@ -19,10 +38,11 @@ function List({ data }) {
             src={
               book.cover
                 ? book.cover.url
-                : 'https://via.placeholder.com/120x180?text=No+Cover+Available'
+                : 'https://plchldr.co/i/120x180?bg=666666&text=No+Cover'
             }
             alt={book.title}
           />
+
           <strong>{book.title}</strong>
           <small>{book.authors.map((author) => author)}</small>
         </li>
@@ -45,7 +65,7 @@ List.propTypes = {
 };
 
 List.defaultProps = {
-  data: {},
+  data: [],
 };
 
 export default List;
