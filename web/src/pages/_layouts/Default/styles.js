@@ -39,8 +39,11 @@ export const Container = styled.div`
       }
     }
 
-    &.logout {
+    &.logout,
+    &.delete {
       background: ${(props) => props.theme.colors.backgroundPrimary};
+
+      border: 1px solid ${(props) => props.theme.colors.primary};
 
       &:hover {
         background: ${(props) => props.theme.colors.primary};

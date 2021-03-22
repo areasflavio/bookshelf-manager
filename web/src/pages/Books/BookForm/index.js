@@ -124,6 +124,11 @@ function BookForm() {
               Cancel
             </button>
           </LineGroup>
+          {id && (
+            <button type="button" className="delete" onClick={() => {}}>
+              Delete book
+            </button>
+          )}
         </section>
       </StyledForm>
     </Container>

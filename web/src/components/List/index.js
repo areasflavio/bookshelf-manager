@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 import BookModal from '../BookModal';
-// import history from '../../services/history';
 
 function List({ data }) {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -29,7 +28,6 @@ function List({ data }) {
             bookId={bookModalId}
           />
           <img
-            // onClick={() => history.push(`/books/form/${book.id}`)}
             onClick={() => openModal(book.id)}
             // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
             role="button"

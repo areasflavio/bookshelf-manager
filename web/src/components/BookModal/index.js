@@ -4,6 +4,7 @@ import { ModalProvider } from 'styled-react-modal';
 import PropTypes from 'prop-types';
 
 import api from '../../services/api';
+import history from '../../services/history';
 
 import {
   StyledModal,
@@ -56,38 +57,48 @@ function BookModal({ isOpen, onRequestClose, bookId, ...rest }) {
         {...rest}
       >
         <Content>
-          <img
-            className="modal"
-            src={book.cover && book.cover.url}
-            alt={book.title}
-          />
+          <section>
+            <img
+              className="modal"
+              src={book.cover && book.cover.url}
+              alt={book.title}
+            />
+
+            <button
+              type="button"
+              onClick={() => history.push(`/books/form/${book.id}`)}
+            >
+              Edit book
+            </button>
+          </section>
+
           <section>
             <h1>{book.title}</h1>
             <span>
               by {/* {book.authors.map((author) => ( */}
-              <strong>{book.authors}</strong>
+              <h2>{book.authors}</h2>
               {/* ))} */}
             </span>
 
             <InfoItem>
-              <strong>ISBN</strong>
-              <small>{book.isbn}</small>
+              <h2>ISBN</h2>
+              <p>{book.isbn}</p>
             </InfoItem>
             <InfoItem>
-              <strong>Genre</strong>
-              <small>{book.genre}</small>
+              <h2>Genre</h2>
+              <p>{book.genre}</p>
             </InfoItem>
             <InfoItem>
-              <strong>Synopsis</strong>
+              <h2>Publishing company</h2>
+              <p>{book.publishing_company}</p>
+            </InfoItem>
+            <InfoItem>
+              <h2>Total pages</h2>
+              <p>{book.pages}</p>
+            </InfoItem>
+            <InfoItem>
+              <h2>Synopsis</h2>
               <p>{book.synopsis}</p>
-            </InfoItem>
-            <InfoItem>
-              <strong>Publishing company</strong>
-              <small>{book.publishing_company}</small>
-            </InfoItem>
-            <InfoItem>
-              <strong>Total pages</strong>
-              <small>{book.pages}</small>
             </InfoItem>
           </section>
         </Content>
