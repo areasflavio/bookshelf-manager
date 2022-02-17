@@ -57,50 +57,52 @@ function BookModal({ isOpen, onRequestClose, bookId, ...rest }) {
         {...rest}
       >
         <Content>
-          <section>
-            <img
-              className="modal"
-              src={book.cover && book.cover.url}
-              alt={book.title}
-            />
-
-            <button
-              type="button"
-              onClick={() => history.push(`/books/form/${book.id}`)}
-            >
-              Edit book
-            </button>
-          </section>
-
-          <section>
+          <header>
             <h1>{book.title}</h1>
             <span>
-              by {/* {book.authors.map((author) => ( */}
               <h2>{book.authors}</h2>
-              {/* ))} */}
             </span>
+          </header>
 
-            <InfoItem>
-              <h2>ISBN</h2>
-              <p>{book.isbn}</p>
-            </InfoItem>
-            <InfoItem>
-              <h2>Genre</h2>
-              <p>{book.genre}</p>
-            </InfoItem>
-            <InfoItem>
-              <h2>Publishing company</h2>
-              <p>{book.publishing_company}</p>
-            </InfoItem>
-            <InfoItem>
-              <h2>Total pages</h2>
-              <p>{book.pages}</p>
-            </InfoItem>
-            <InfoItem>
-              <h2>Synopsis</h2>
-              <p>{book.synopsis}</p>
-            </InfoItem>
-          </section>
+          <main>
+            <section>
+              <img
+                className="modal"
+                src={book.cover && book.cover.url}
+                alt={book.title}
+              />
+
+              <button
+                type="button"
+                onClick={() => history.push(`/books/form/${book.id}`)}
+              >
+                Edit book
+              </button>
+            </section>
+
+            <section>
+              <InfoItem>
+                <h2>ISBN</h2>
+                <p>{book.isbn}</p>
+              </InfoItem>
+              <InfoItem>
+                <h2>Genre</h2>
+                <p>{book.genre}</p>
+              </InfoItem>
+              <InfoItem>
+                <h2>Publishing company</h2>
+                <p>{book.publishing_company}</p>
+              </InfoItem>
+              <InfoItem>
+                <h2>Total pages</h2>
+                <p>{book.pages}</p>
+              </InfoItem>
+              <InfoItem>
+                <h2>Synopsis</h2>
+                <p>{book.synopsis}</p>
+              </InfoItem>
+            </section>
+          </main>
         </Content>
       </StyledModal>
     </ModalProvider>

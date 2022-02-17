@@ -12,9 +12,6 @@ export const StyledModal = Modal.styled`
   max-width: 80%;
   min-width: 20rem;
 
-  // max-height: 80%;
-  // min-height: 20rem;
-
   display: flex;
   margin: 0 auto;
   border-radius: 0.5rem;
@@ -27,13 +24,39 @@ export const StyledModal = Modal.styled`
 `;
 
 export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   width: 100%;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   color: ${(props) => props.theme.colors.secondary};
+
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+
+    border-bottom: 1px dashed ${(props) => props.theme.colors.highlight};
+
+    h1 {
+      font-size: 3rem;
+
+      font-family: ${(props) => props.theme.fonts.title};
+      color: ${(props) => props.theme.colors.highlight};
+    }
+
+    span {
+      display: flex;
+      margin-bottom: 1rem;
+
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  }
 
   img.modal {
     height: 22.5rem;
@@ -53,45 +76,40 @@ export const Content = styled.div`
     color: ${(props) => props.theme.colors.backgroundSecondary};
   }
 
-  section {
+  main {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-    margin: 0 1rem;
-
-    h1 {
-      font-size: 3rem;
-
-      font-family: ${(props) => props.theme.fonts.title};
-      color: ${(props) => props.theme.colors.highlight};
-    }
-
-    span {
+    section {
       display: flex;
-      margin-bottom: 1rem;
+      flex-direction: column;
 
-      h2 {
-        margin-left: 0.5rem;
-        font-size: 1.5rem;
-      }
+      margin: 0 1rem;
     }
   }
 `;
 
 export const InfoItem = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: baseline;
 
   flex-wrap: wrap;
   margin: 0.125rem 0;
+  padding: 0.25rem 0.5rem;
 
   h2 {
     margin-right: 0.5rem;
 
     font-size: 1.5rem;
+    line-height: 1.5;
   }
 
   p {
     font-size: 1rem;
+    line-height: 1.5;
+
+    max-width: 100ch;
   }
 `;
