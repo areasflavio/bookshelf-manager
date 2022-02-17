@@ -60,13 +60,11 @@ const routes = [
   {
     path: '/books/form',
     exact: true,
-    sidebar: <></>,
     main: <BookForm />,
   },
   {
     path: '/books/form/:id',
     exact: false,
-    sidebar: <></>,
     main: <BookForm />,
   },
 ];
@@ -78,13 +76,16 @@ function Dashboard() {
         <section>
           <span>Your books</span>
 
-          {routes.map((route) => (
-            <Item key={route.path} to={route.path}>
-              {route.sidebar}
-            </Item>
-          ))}
+          {routes.map(
+            (route) =>
+              route.sidebar && (
+                <Item key={route.path} to={route.path}>
+                  {route.sidebar}
+                </Item>
+              )
+          )}
 
-          <button type="button" onClick={() => history.replace('/books/form')}>
+          <button type="button" onClick={() => history.push('/books/form')}>
             Add book
           </button>
         </section>

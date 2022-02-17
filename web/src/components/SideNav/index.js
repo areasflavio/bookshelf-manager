@@ -4,7 +4,6 @@ import { FiGrid, FiBook, FiTag, FiBookOpen, FiStar } from 'react-icons/fi';
 
 import { Container, Item } from './styles';
 
-import AllBooks from '../../pages/Dashboard/AllBooks';
 import MyBooks from '../../pages/Dashboard/MyBooks';
 
 function SideNav() {

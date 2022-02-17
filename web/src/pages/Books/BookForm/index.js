@@ -68,6 +68,7 @@ function BookForm() {
       }
 
       toast.success('Book registered with success!');
+      history.push('/dashboard');
     } catch (err) {
       const validationErrors = {};
 
