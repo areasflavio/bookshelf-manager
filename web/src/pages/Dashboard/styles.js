@@ -11,9 +11,13 @@ export const Container = styled.div`
     color: ${(props) => props.theme.colors.primary};
     font-weight: normal;
   }
-`;
 
-export const GenreList = styled.ul`
-  display: flex;
-  gap: 0.5rem;
+  div {
+    display: flex;
+    gap: 0.5rem;
+
+    li {
+      list-style: none;
+    }
+  }
 `;

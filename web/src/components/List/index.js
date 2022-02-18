@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 
 import { Container } from './styles';
@@ -21,7 +22,13 @@ function List({ data }) {
   return (
     <Container>
       {data.map((book) => (
-        <li key={book.id}>
+        <motion.li
+          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          layout
+          key={book.id}
+        >
           <BookModal
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
@@ -43,7 +50,7 @@ function List({ data }) {
 
           <strong>{book.title}</strong>
           <small>{book.authors.map((author) => author)}</small>
-        </li>
+        </motion.li>
       ))}
     </Container>
   );

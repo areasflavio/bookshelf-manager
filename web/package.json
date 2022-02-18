@@ -9,6 +9,7 @@
     "@unform/core": "^2.1.5",
     "@unform/web": "^2.1.5",
     "axios": "^0.21.1",
+    "framer-motion": "4.1.17",
     "history": "^4.10.1",
     "immer": "^8.0.1",
     "polished": "^4.1.0",

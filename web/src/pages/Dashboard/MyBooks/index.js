@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion/dist/framer-motion';
 
 import api from '../../../services/api';
 
 import List from '../../../components/List';
 
-import { Container, GenreList } from '../styles';
+import { Container } from '../styles';
 
 function MyBooks() {
   const [books, setBooks] = useState([]);
@@ -18,9 +19,9 @@ function MyBooks() {
 
       setBooks(response.data);
 
-      const filteredGenres = response.data.map((book) => book.genre);
+      const newGenres = response.data.map((book) => book.genre);
 
-      setGenres(['All', ...filteredGenres]);
+      setGenres(['All', ...new Set(newGenres)]);
     }
 
     getMyBooks();
@@ -44,19 +45,21 @@ function MyBooks() {
     <Container>
       <h1>My Books</h1>
 
-      <GenreList>
-        {genres.map((genre) => (
-          <li key={genre}>
-            <button
-              className={currentGenre === genre ? '' : 'outline'}
-              type="button"
-              onClick={() => handleFilterByGenre(genre)}
-            >
-              {genre}
-            </button>
-          </li>
-        ))}
-      </GenreList>
+      <AnimatePresence>
+        <motion.div layout>
+          {genres.map((genre) => (
+            <li key={genre}>
+              <button
+                className={currentGenre === genre ? '' : 'outline'}
+                type="button"
+                onClick={() => handleFilterByGenre(genre)}
+              >
+                {genre}
+              </button>
+            </li>
+          ))}
+        </motion.div>
+      </AnimatePresence>
 
       <List data={filteredBooks} />
     </Container>
