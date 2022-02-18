@@ -1,31 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion/dist/framer-motion';
-
-import api from '../../../services/api';
+import PropTypes from 'prop-types';
 
 import List from '../../../components/List';
 
 import { Container } from '../styles';
 
-function MyBooks() {
-  const [books, setBooks] = useState([]);
+function MyBooks({ books, genres }) {
   const [filteredBooks, setFilteredBooks] = useState([]);
-  const [genres, setGenres] = useState([]);
   const [currentGenre, setCurrentGenre] = useState('All');
-
-  useEffect(() => {
-    async function getMyBooks() {
-      const response = await api.get('books');
-
-      setBooks(response.data);
-
-      const newGenres = response.data.map((book) => book.genre);
-
-      setGenres(['All', ...new Set(newGenres)]);
-    }
-
-    getMyBooks();
-  }, []);
 
   useEffect(() => {
     if (currentGenre === 'All') {
@@ -46,7 +29,7 @@ function MyBooks() {
       <h1>My Books</h1>
 
       <AnimatePresence>
-        <motion.div layout>
+        <motion.ul layout>
           {genres.map((genre) => (
             <li key={genre}>
               <button
@@ -58,12 +41,17 @@ function MyBooks() {
               </button>
             </li>
           ))}
-        </motion.div>
+        </motion.ul>
       </AnimatePresence>
 
       <List data={filteredBooks} />
     </Container>
   );
 }
+
+MyBooks.propTypes = {
+  books: PropTypes.arrayOf.isRequired,
+  genres: PropTypes.arrayOf.isRequired,
+};
 
 export default MyBooks;

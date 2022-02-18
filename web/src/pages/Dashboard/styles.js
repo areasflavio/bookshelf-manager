@@ -12,7 +12,7 @@ export const Container = styled.div`
     font-weight: normal;
   }
 
-  div {
+  ul {
     display: flex;
     gap: 0.5rem;
 
