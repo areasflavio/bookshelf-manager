@@ -36,7 +36,7 @@ function FileInput({ fieldName }) {
   useEffect(() => {
     if (fieldName === 'avatar') {
       setPlaceImg(
-        'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.MVzzVBGqNE35Ksyya4rnsQHaHa%26pid%3DApi&f=1'
+        'https://via.placeholder.com/150/F2ECFF/394B40/?text=No%20Avatar'
       );
     } else {
       setPlaceImg('https://plchldr.co/i/120x180?bg=666666&text=No+Cover');

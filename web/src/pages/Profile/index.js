@@ -2,7 +2,8 @@ import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 
-import { StyledForm } from '../../styles/form';
+import { Content } from '../_layouts/Auth/styles';
+import history from '../../services/history';
 
 import { updateProfileRequest } from '../../store/modules/user/actions';
 import { signOut } from '../../store/modules/auth/actions';
@@ -10,9 +11,8 @@ import { signOut } from '../../store/modules/auth/actions';
 import Input from '../../components/SimpleInput';
 import FileInput from '../../components/FileInput';
 
-import { Content } from '../_layouts/Auth/styles';
+import { StyledForm } from '../../styles/form';
 import { Container, ButtonGroup } from './styles';
-import history from '../../services/history';
 
 function Profile() {
   const formRef = useRef(null);

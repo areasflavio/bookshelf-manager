@@ -25,6 +25,8 @@ export const Container = styled.div`
     &[type='button'] {
       background: ${(props) => props.theme.colors.highlight};
 
+      border: 1px solid ${(props) => props.theme.colors.highlight};
+
       &:hover {
         background: ${(props) =>
           darken(0.05, `${props.theme.colors.highlight}`)};
@@ -33,6 +35,8 @@ export const Container = styled.div`
 
     &.cancel {
       background: ${(props) => props.theme.colors.error};
+
+      border: 1px solid ${(props) => props.theme.colors.error};
 
       &:hover {
         background: ${(props) => darken(0.05, `${props.theme.colors.error}`)};
@@ -47,6 +51,18 @@ export const Container = styled.div`
 
       &:hover {
         background: ${(props) => props.theme.colors.primary};
+      }
+    }
+
+    &.outline {
+      background: ${(props) => props.theme.colors.backgroundPrimary};
+      color: ${(props) => props.theme.colors.highlight};
+
+      border: 1px solid ${(props) => props.theme.colors.highlight};
+
+      &:hover {
+        color: ${(props) => props.theme.colors.backgroundSecondary};
+        background: ${(props) => props.theme.colors.highlight};
       }
     }
   }
