@@ -11,6 +11,7 @@ class Book extends Model {
         publishing_company: Sequelize.STRING,
         pages: Sequelize.STRING,
         authors: Sequelize.ARRAY(Sequelize.STRING),
+        is_reading: Sequelize.BOOLEAN,
       },
       {
         sequelize,

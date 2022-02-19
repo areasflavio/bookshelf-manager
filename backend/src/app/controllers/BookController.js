@@ -1,7 +1,6 @@
 import * as Yup from 'yup';
 
 import Book from '../models/Book';
-import User from '../models/User';
 import File from '../models/File';
 
 class BookController {
@@ -40,6 +39,7 @@ class BookController {
         'publishing_company',
         'pages',
         'authors',
+        'is_reading',
       ],
       include: {
         model: File,
@@ -88,6 +88,7 @@ class BookController {
       cover_id,
       pages,
       authors,
+      is_reading,
     } = await Book.create({ ...request.body, user_id: request.userId });
 
     return response.status(201).json({
@@ -100,6 +101,7 @@ class BookController {
       cover_id,
       pages,
       authors,
+      is_reading,
     });
   }
 
@@ -151,6 +153,7 @@ class BookController {
       cover,
       authors,
       pages,
+      is_reading,
     } = await book.update({ ...request.body, user_id: request.userId });
 
     return response.status(200).json({
@@ -163,6 +166,7 @@ class BookController {
       cover,
       authors,
       pages,
+      is_reading,
     });
   }
 

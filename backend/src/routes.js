@@ -13,6 +13,7 @@ import SessionController from './app/controllers/SessionController';
 import BookController from './app/controllers/BookController';
 import FileController from './app/controllers/FileController';
 import UserController from './app/controllers/UserController';
+import ReadingController from './app/controllers/ReadingController';
 
 routes.post('/session', SessionController.store);
 
@@ -31,5 +32,7 @@ routes.get('/books/:id', BookController.show);
 routes.post('/books', BookController.store);
 routes.put('/books/:id', BookController.update);
 routes.delete('/books/:id', BookController.delete);
+
+routes.put('/books/:id/reading', ReadingController.update);
 
 export default routes;
