@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { FiBook, FiTag, FiBookOpen, FiStar } from 'react-icons/fi';
 import { Route, Switch } from 'react-router-dom';
 
+import { getBooksRequest } from '../../store/modules/books/actions';
+
 import history from '../../services/history';
-import api from '../../services/api';
 
 import BookForm from '../Books/BookForm';
 
@@ -15,14 +17,19 @@ import FavoriteReads from './FavoriteReads';
 import { Sidebar, Item } from '../../styles/sidebar';
 
 function Dashboard() {
-  const [books, setBooks] = useState([]);
-  const [genres, setGenres] = useState([]);
+  const dispatch = useDispatch();
+
+  const books = useSelector((state) => state.books.books);
+  const genres = useSelector((state) => state.books.genres);
+
   const [currentReadingBooks, setCurrentReadingBooks] = useState([]);
   const [favoriteReadBooks, setFavoriteReadBooks] = useState([]);
 
   useEffect(() => {
-    setCurrentReadingBooks(books.filter((book) => book.is_reading === true));
-    setFavoriteReadBooks(books.filter((book) => book.favorite_read === true));
+    if (books) {
+      setCurrentReadingBooks(books.filter((book) => book.is_reading === true));
+      setFavoriteReadBooks(books.filter((book) => book.favorite_read === true));
+    }
   }, [books]);
 
   const routes = [
@@ -57,7 +64,12 @@ function Dashboard() {
           <strong>Reading</strong>
         </>
       ),
-      main: <Reading books={currentReadingBooks} />,
+      main: (
+        <Reading
+          books={currentReadingBooks}
+          genres={['All', ...new Set(genres)]}
+        />
+      ),
     },
     {
       path: '/dashboard/favorites',
@@ -68,7 +80,12 @@ function Dashboard() {
           <strong>Favorite Reads</strong>
         </>
       ),
-      main: <FavoriteReads books={favoriteReadBooks} />,
+      main: (
+        <FavoriteReads
+          books={favoriteReadBooks}
+          genres={['All', ...new Set(genres)]}
+        />
+      ),
     },
     {
       path: '/books/form',
@@ -83,18 +100,8 @@ function Dashboard() {
   ];
 
   useEffect(() => {
-    async function getMyBooks() {
-      const response = await api.get('books');
-
-      setBooks(response.data);
-
-      const newGenres = response.data.map((book) => book.genre);
-
-      setGenres(newGenres);
-    }
-
-    getMyBooks();
-  }, []);
+    dispatch(getBooksRequest());
+  }, [dispatch]);
 
   return (
     <>

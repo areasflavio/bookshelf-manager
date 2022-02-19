@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { ModalProvider } from 'styled-react-modal';
 
 import PropTypes from 'prop-types';
 
 import api from '../../services/api';
 import history from '../../services/history';
+import { getBooksRequest } from '../../store/modules/books/actions';
 
 import {
   StyledModal,
@@ -14,6 +16,8 @@ import {
 } from './styles';
 
 function BookModal({ isOpen, onRequestClose, bookId, ...rest }) {
+  const dispatch = useDispatch();
+
   const [book, setBook] = useState({});
 
   const [opacity, setOpacity] = useState(0);
@@ -43,7 +47,7 @@ function BookModal({ isOpen, onRequestClose, bookId, ...rest }) {
     });
   }
 
-  async function handleSetIsReading(book_id, is_reading) {
+  async function handleSetIsReading(is_reading) {
     const response = await api.put(`/books/${bookId}/reading`, {
       is_reading: !is_reading,
     });
@@ -52,9 +56,11 @@ function BookModal({ isOpen, onRequestClose, bookId, ...rest }) {
       ...book,
       ...response.data,
     });
+
+    dispatch(getBooksRequest());
   }
 
-  async function handleSetFavoriteRead(book_id, favorite_read) {
+  async function handleSetFavoriteRead(favorite_read) {
     const response = await api.put(`/books/${bookId}/favorite`, {
       favorite_read: !favorite_read,
     });
@@ -63,6 +69,8 @@ function BookModal({ isOpen, onRequestClose, bookId, ...rest }) {
       ...book,
       ...response.data,
     });
+
+    dispatch(getBooksRequest());
   }
 
   return (
@@ -103,16 +111,14 @@ function BookModal({ isOpen, onRequestClose, bookId, ...rest }) {
               <button
                 type="button"
                 className={book.is_reading ? '' : 'outline'}
-                onClick={() => handleSetIsReading(book.id, book.is_reading)}
+                onClick={() => handleSetIsReading(book.is_reading)}
               >
                 Current reading
               </button>
               <button
                 type="button"
                 className={book.favorite_read ? '' : 'outline'}
-                onClick={() =>
-                  handleSetFavoriteRead(book.id, book.favorite_read)
-                }
+                onClick={() => handleSetFavoriteRead(book.favorite_read)}
               >
                 Favorite read
               </button>
