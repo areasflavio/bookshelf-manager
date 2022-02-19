@@ -43,6 +43,28 @@ function BookModal({ isOpen, onRequestClose, bookId, ...rest }) {
     });
   }
 
+  async function handleSetIsReading(book_id, is_reading) {
+    const response = await api.put(`/books/${bookId}/reading`, {
+      is_reading: !is_reading,
+    });
+
+    setBook({
+      ...book,
+      ...response.data,
+    });
+  }
+
+  async function handleSetFavoriteRead(book_id, favorite_read) {
+    const response = await api.put(`/books/${bookId}/favorite`, {
+      favorite_read: !favorite_read,
+    });
+
+    setBook({
+      ...book,
+      ...response.data,
+    });
+  }
+
   return (
     <ModalProvider backgroundComponent={SpecialModalBackground}>
       <StyledModal
@@ -77,6 +99,22 @@ function BookModal({ isOpen, onRequestClose, bookId, ...rest }) {
                 onClick={() => history.push(`/books/form/${book.id}`)}
               >
                 Edit book
+              </button>
+              <button
+                type="button"
+                className={book.is_reading ? '' : 'outline'}
+                onClick={() => handleSetIsReading(book.id, book.is_reading)}
+              >
+                Current reading
+              </button>
+              <button
+                type="button"
+                className={book.favorite_read ? '' : 'outline'}
+                onClick={() =>
+                  handleSetFavoriteRead(book.id, book.favorite_read)
+                }
+              >
+                Favorite read
               </button>
             </section>
 

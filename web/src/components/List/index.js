@@ -21,6 +21,12 @@ function List({ data }) {
 
   return (
     <Container>
+      <BookModal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        bookId={bookModalId}
+      />
+
       {data.map((book) => (
         <motion.li
           animate={{ opacity: 1, scale: 1 }}
@@ -29,11 +35,6 @@ function List({ data }) {
           layout
           key={book.id}
         >
-          <BookModal
-            isOpen={modalIsOpen}
-            onRequestClose={closeModal}
-            bookId={bookModalId}
-          />
           <img
             onClick={() => openModal(book.id)}
             // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role

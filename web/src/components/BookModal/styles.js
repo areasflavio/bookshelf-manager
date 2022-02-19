@@ -44,7 +44,7 @@ export const Content = styled.div`
     h1 {
       font-size: 3rem;
 
-      font-family: ${(props) => props.theme.fonts.title};
+      font-family: ${(props) => props.theme.fonts.text};
       color: ${(props) => props.theme.colors.highlight};
     }
 
@@ -59,8 +59,8 @@ export const Content = styled.div`
   }
 
   img.modal {
-    height: 22.5rem;
-    width: 15rem;
+    height: 18.75rem;
+    width: 12.5rem;
     border-radius: 0.5rem;
 
     margin-bottom: 0.5rem;
@@ -74,6 +74,10 @@ export const Content = styled.div`
   a {
     text-decoration: none;
     color: ${(props) => props.theme.colors.backgroundSecondary};
+  }
+
+  button + button {
+    margin-top: 0.5rem;
   }
 
   main {
@@ -111,5 +115,12 @@ export const InfoItem = styled.div`
     line-height: 1.5;
 
     max-width: 100ch;
+  }
+
+  &:last-child {
+    p {
+      max-height: 100px;
+      overflow-y: scroll;
+    }
   }
 `;
