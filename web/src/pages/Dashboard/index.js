@@ -17,6 +17,13 @@ import { Sidebar, Item } from '../../styles/sidebar';
 function Dashboard() {
   const [books, setBooks] = useState([]);
   const [genres, setGenres] = useState([]);
+  const [currentReadingBooks, setCurrentReadingBooks] = useState([]);
+  const [favoriteReadBooks, setFavoriteReadBooks] = useState([]);
+
+  useEffect(() => {
+    setCurrentReadingBooks(books.filter((book) => book.is_reading === true));
+    setFavoriteReadBooks(books.filter((book) => book.favorite_read === true));
+  }, [books]);
 
   const routes = [
     {
@@ -50,7 +57,7 @@ function Dashboard() {
           <strong>Reading</strong>
         </>
       ),
-      main: <Reading />,
+      main: <Reading books={currentReadingBooks} />,
     },
     {
       path: '/dashboard/favorites',
@@ -61,7 +68,7 @@ function Dashboard() {
           <strong>Favorite Reads</strong>
         </>
       ),
-      main: <FavoriteReads />,
+      main: <FavoriteReads books={favoriteReadBooks} />,
     },
     {
       path: '/books/form',

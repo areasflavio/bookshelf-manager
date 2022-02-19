@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion/dist/framer-motion';
 import PropTypes from 'prop-types';
 
 import List from '../../../components/List';
@@ -27,22 +26,19 @@ function MyBooks({ books, genres }) {
   return (
     <Container>
       <h1>My Books</h1>
-
-      <AnimatePresence>
-        <motion.ul layout>
-          {genres.map((genre) => (
-            <li key={genre}>
-              <button
-                className={currentGenre === genre ? '' : 'outline'}
-                type="button"
-                onClick={() => handleFilterByGenre(genre)}
-              >
-                {genre}
-              </button>
-            </li>
-          ))}
-        </motion.ul>
-      </AnimatePresence>
+      <ul>
+        {genres.map((genre) => (
+          <li key={genre}>
+            <button
+              className={currentGenre === genre ? '' : 'outline'}
+              type="button"
+              onClick={() => handleFilterByGenre(genre)}
+            >
+              {genre}
+            </button>
+          </li>
+        ))}
+      </ul>
 
       <List data={filteredBooks} />
     </Container>
