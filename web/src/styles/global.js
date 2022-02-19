@@ -43,4 +43,28 @@ export default createGlobalStyle`
     cursor: pointer;
     border: none;
   }
+
+  /* Scrollbar */
+  /* Works on Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: ${(props) =>
+      `${props.theme.colors.backgroundPrimary} ${props.theme.colors.backgroundSecondary}`};
+  }
+
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: ${(props) => props.theme.colors.backgroundSecondary};
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: ${(props) => props.theme.colors.backgroundPrimary};
+    border-radius: 20px;
+    border: 3px solid ${(props) => props.theme.colors.backgroundSecondary};
+  }
+
 `;

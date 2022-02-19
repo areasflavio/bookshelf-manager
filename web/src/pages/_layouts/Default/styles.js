@@ -55,7 +55,7 @@ export const Container = styled.div`
     }
 
     &.outline {
-      background: ${(props) => props.theme.colors.backgroundPrimary};
+      background: transparent;
       color: ${(props) => props.theme.colors.highlight};
 
       border: 1px solid ${(props) => props.theme.colors.highlight};
