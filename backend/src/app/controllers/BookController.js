@@ -16,6 +16,8 @@ class BookController {
         'publishing_company',
         'pages',
         'authors',
+        'is_reading',
+        'favorite_read',
       ],
       include: {
         model: File,
@@ -40,6 +42,7 @@ class BookController {
         'pages',
         'authors',
         'is_reading',
+        'favorite_read',
       ],
       include: {
         model: File,
@@ -89,6 +92,7 @@ class BookController {
       pages,
       authors,
       is_reading,
+      favorite_read,
     } = await Book.create({ ...request.body, user_id: request.userId });
 
     return response.status(201).json({
@@ -102,6 +106,7 @@ class BookController {
       pages,
       authors,
       is_reading,
+      favorite_read,
     });
   }
 
@@ -154,6 +159,7 @@ class BookController {
       authors,
       pages,
       is_reading,
+      favorite_read,
     } = await book.update({ ...request.body, user_id: request.userId });
 
     return response.status(200).json({
@@ -167,6 +173,7 @@ class BookController {
       authors,
       pages,
       is_reading,
+      favorite_read,
     });
   }
 

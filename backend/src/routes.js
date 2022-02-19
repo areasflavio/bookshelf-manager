@@ -14,6 +14,7 @@ import BookController from './app/controllers/BookController';
 import FileController from './app/controllers/FileController';
 import UserController from './app/controllers/UserController';
 import ReadingController from './app/controllers/ReadingController';
+import FavoriteReadController from './app/controllers/FavoriteReadController';
 
 routes.post('/session', SessionController.store);
 
@@ -34,5 +35,6 @@ routes.put('/books/:id', BookController.update);
 routes.delete('/books/:id', BookController.delete);
 
 routes.put('/books/:id/reading', ReadingController.update);
+routes.put('/books/:id/favorite', FavoriteReadController.update);
 
 export default routes;

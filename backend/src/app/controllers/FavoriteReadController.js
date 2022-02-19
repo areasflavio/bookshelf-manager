@@ -1,6 +1,6 @@
 import Book from '../models/Book';
 
-class ReadingController {
+class FavoriteReadController {
   async update(request, response) {
     const { id } = request.params;
 
@@ -16,7 +16,7 @@ class ReadingController {
         .json({ error: "You're not allowed to edit this book" });
     }
 
-    const { is_reading } = request.body;
+    const { favorite_read } = request.body;
 
     const {
       title,
@@ -27,8 +27,8 @@ class ReadingController {
       cover,
       authors,
       pages,
-      favorite_read,
-    } = await book.update({ is_reading, user_id: request.userId });
+      is_reading,
+    } = await book.update({ favorite_read, user_id: request.userId });
 
     return response.status(200).json({
       id,
@@ -46,4 +46,4 @@ class ReadingController {
   }
 }
 
-export default new ReadingController();
+export default new FavoriteReadController();
