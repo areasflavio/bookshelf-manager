@@ -36,7 +36,6 @@ function TextAreaInput({ name, label, ...rest }) {
           className={error ? 'has-error' : ''}
           onFocus={clearError}
           spellCheck={false}
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
         />
       </Tooltip>

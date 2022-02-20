@@ -19,7 +19,6 @@ function Profile() {
 
   const profile = useSelector((state) => state.user.profile);
 
-  // eslint-disable-next-line no-unused-vars
   const dispatch = useDispatch();
 
   const [changePassword, setChangePassword] = useState(false);

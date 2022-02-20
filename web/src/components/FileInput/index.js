@@ -30,8 +30,7 @@ function FileInput({ fieldName }) {
         path: 'dataset.file',
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ref, registerField]);
+  }, [fieldName, ref, registerField]);
 
   useEffect(() => {
     if (fieldName === 'avatar') {

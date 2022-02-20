@@ -1,10 +1,7 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { FiGrid, FiBook, FiTag, FiBookOpen, FiStar } from 'react-icons/fi';
 
 import { Container, Item } from './styles';
-
-import MyBooks from '../../pages/Dashboard/MyBooks';
 
 function SideNav() {
   return (

@@ -43,6 +43,7 @@ export const Content = styled.div`
 
     h1 {
       font-size: 3rem;
+      font-weight: bold;
 
       font-family: ${(props) => props.theme.fonts.text};
       color: ${(props) => props.theme.colors.highlight};

@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { useLayer, Arrow } from 'react-laag';
 import PropTypes from 'prop-types';

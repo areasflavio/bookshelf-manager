@@ -83,7 +83,6 @@ function BookModal({ isOpen, onRequestClose, bookId, ...rest }) {
         beforeClose={beforeClose}
         opacity={opacity}
         backgroundProps={{ opacity }}
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
       >
         <Content>

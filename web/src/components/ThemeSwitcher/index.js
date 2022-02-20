@@ -23,11 +23,10 @@ function ThemeSwitcher({ currentTheme }) {
     const toApplyTheme = themes.find((t) => t.name === theme);
 
     dispatch(applyTheme(toApplyTheme));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme]);
+  }, [dispatch, theme]);
 
-  function handleChange(toogleTheme) {
-    setTheme(toogleTheme);
+  function handleChange(toggleTheme) {
+    setTheme(toggleTheme);
   }
 
   return (

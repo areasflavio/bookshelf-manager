@@ -74,11 +74,11 @@ export const User = styled.div`
   align-self: stretch;
 
   svg {
-    transition: color 0.2s;
+    transition: filter 0.2s;
 
     &:hover {
       cursor: pointer;
-      color: ${(props) => props.theme.colors.backgroundPrimary};
+      filter: brightness(0.7);
     }
   }
 `;

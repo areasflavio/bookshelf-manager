@@ -6,6 +6,7 @@ export const Container = styled.div`
 
   gap: 1rem;
   margin-left: 2rem;
+  margin-bottom: 4rem;
 
   h1 {
     color: ${(props) => props.theme.colors.primary};

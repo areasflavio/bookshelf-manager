@@ -41,7 +41,6 @@ function InputMask({ name, label, ...rest }) {
           defaultValue={defaultValue && defaultValue}
           className={error ? 'has-error' : ''}
           onFocus={clearError}
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
         />
       </Tooltip>

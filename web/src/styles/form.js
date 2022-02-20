@@ -3,12 +3,6 @@ import { darken } from 'polished';
 import { Form } from '@unform/web';
 
 export const StyledForm = styled(Form)`
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  width: 100%; */
-
   & > main {
     width: 100%;
 
@@ -75,15 +69,4 @@ export const StyledForm = styled(Form)`
       background: ${(props) => darken(0.08, `${props.theme.colors.highlight}`)};
     }
   }
-
-  /* span {
-    font-weight: bold;
-    font-size: 0.625rem;
-    text-transform: uppercase;
-    color: ${(props) => props.theme.colors.error};
-
-    align-self: flex-start;
-
-    margin-top: 0.125rem;
-  } */
 `;
