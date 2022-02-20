@@ -13,6 +13,10 @@ function books(state = INITIAL_STATE, action) {
         draft.genres = action.payload.genres;
         break;
       }
+      case '@books/FILTER_BOOKS_SUCCESS': {
+        draft.books = action.payload.books;
+        break;
+      }
       default:
     }
   });

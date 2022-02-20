@@ -3,7 +3,11 @@ import { toast } from 'react-toastify';
 
 import api from '../../../services/api';
 
-import { getBooksFailure, getBooksSuccess } from './actions';
+import {
+  getBooksFailure,
+  getBooksSuccess,
+  filterBooksSuccess,
+} from './actions';
 
 export function* getBooks() {
   try {
@@ -20,4 +24,22 @@ export function* getBooks() {
   }
 }
 
-export default all([takeLatest('@books/GET_BOOKS_REQUEST', getBooks)]);
+export function* filterBooks({ payload }) {
+  try {
+    const response = yield call(api.get, 'books');
+
+    const filteredBooks = response.data.filter((book) =>
+      book.title.toLowerCase().includes(payload.filter.toLowerCase())
+    );
+
+    yield put(filterBooksSuccess(filteredBooks));
+  } catch (error) {
+    toast.error('Error getting your books.');
+    yield put(getBooksFailure());
+  }
+}
+
+export default all([
+  takeLatest('@books/GET_BOOKS_REQUEST', getBooks),
+  takeLatest('@books/FILTER_BOOKS_REQUEST', filterBooks),
+]);

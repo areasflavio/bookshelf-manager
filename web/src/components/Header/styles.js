@@ -10,6 +10,7 @@ export const Container = styled.div`
 
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
 `;
+
 export const Content = styled.div`
   display: flex;
   align-items: center;
@@ -53,6 +54,10 @@ export const Content = styled.div`
 
       color: ${(props) => props.theme.colors.primary};
       background: ${(props) => props.theme.colors.backgroundSecondary};
+
+      &::placeholder {
+        color: ${(props) => props.theme.colors.primary};
+      }
     }
   }
 `;

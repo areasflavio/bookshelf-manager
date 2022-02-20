@@ -16,3 +16,17 @@ export function getBooksFailure() {
     type: '@books/GET_BOOKS_FAILURE',
   };
 }
+
+export function filterBooksRequest(filter) {
+  return {
+    type: '@books/FILTER_BOOKS_REQUEST',
+    payload: { filter },
+  };
+}
+
+export function filterBooksSuccess(books) {
+  return {
+    type: '@books/FILTER_BOOKS_SUCCESS',
+    payload: { books },
+  };
+}
