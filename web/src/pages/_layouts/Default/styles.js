@@ -45,12 +45,14 @@ export const Container = styled.div`
 
     &.logout,
     &.delete {
-      background: ${(props) => props.theme.colors.backgroundPrimary};
+      background: transparent;
+      color: ${(props) => props.theme.colors.primary};
 
       border: 1px solid ${(props) => props.theme.colors.primary};
 
       &:hover {
         background: ${(props) => props.theme.colors.primary};
+        color: ${(props) => props.theme.colors.backgroundPrimary};
       }
     }
 

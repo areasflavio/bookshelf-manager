@@ -21,8 +21,8 @@ export const Container = styled.div`
       ${(props) =>
         props.type === 'avatar'
           ? css`
-              height: 20rem;
-              width: 20rem;
+              height: 15rem;
+              width: 15rem;
               border-radius: 50%;
             `
           : css`

@@ -7,6 +7,7 @@ export const Container = styled.div`
 
   width: 100%;
   background: ${(props) => props.theme.colors.backgroundSecondary};
+  padding: 1rem 0;
 
   border-radius: 0.25rem;
 
@@ -16,12 +17,6 @@ export const Container = styled.div`
     align-items: center;
 
     width: 100%;
-  }
-
-  img {
-    height: 20rem;
-    width: 20rem;
-    border-radius: 50%;
   }
 
   span {
