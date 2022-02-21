@@ -1,5 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 import bcrypt from 'bcryptjs';
+import { v4 as uuidv4 } from 'uuid';
 
 class User extends Model {
   static init(sequelize) {
@@ -17,6 +18,10 @@ class User extends Model {
     );
 
     this.addHook('beforeSave', async (user) => {
+      if (!user.id) {
+        user.id = uuidv4();
+      }
+
       if (user.password) {
         user.password_hash = await bcrypt.hash(user.password, 8);
       }

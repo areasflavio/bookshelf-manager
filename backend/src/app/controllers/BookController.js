@@ -67,7 +67,7 @@ class BookController {
       publishing_company: Yup.string().required(),
       pages: Yup.string().required(),
       authors: Yup.array().of(Yup.string()).required(),
-      cover_id: Yup.number().required(),
+      cover_id: Yup.string().required(),
     });
 
     if (!(await schema.isValid(request.body))) {

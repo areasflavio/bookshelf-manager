@@ -4,10 +4,10 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return await queryInterface.createTable('users', {
       id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
+        allowNull: false,
       },
       name: {
         type: Sequelize.STRING,
@@ -23,7 +23,7 @@ module.exports = {
         allowNull: false,
       },
       avatar_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         references: { model: 'files', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',

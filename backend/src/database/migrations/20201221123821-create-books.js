@@ -4,10 +4,10 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return await queryInterface.createTable('books', {
       id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
+        allowNull: false,
       },
       isbn: {
         type: Sequelize.STRING,
@@ -38,14 +38,14 @@ module.exports = {
         allowNull: false,
       },
       cover_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         references: { model: 'files', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
         allowNull: true,
       },
       user_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         references: { model: 'users', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
