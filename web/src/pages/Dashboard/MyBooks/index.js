@@ -46,8 +46,24 @@ function MyBooks({ books, genres }) {
 }
 
 MyBooks.propTypes = {
-  books: PropTypes.arrayOf.isRequired,
-  genres: PropTypes.arrayOf.isRequired,
+  books: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      isbn: PropTypes.string,
+      title: PropTypes.string,
+      synopsis: PropTypes.string,
+      genre: PropTypes.string,
+      publishing_company: PropTypes.string,
+      pages: PropTypes.string,
+      authors: PropTypes.arrayOf(PropTypes.string),
+      cover: PropTypes.shape({
+        id: PropTypes.string,
+        url: PropTypes.string,
+        path: PropTypes.string,
+      }),
+    })
+  ).isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default MyBooks;

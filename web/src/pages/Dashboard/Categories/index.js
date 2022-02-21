@@ -22,7 +22,7 @@ function Categories({ genres }) {
 }
 
 Categories.propTypes = {
-  genres: PropTypes.arrayOf.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Categories;

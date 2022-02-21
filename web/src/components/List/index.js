@@ -57,20 +57,23 @@ function List({ data }) {
 }
 
 List.propTypes = {
-  data: PropTypes.arrayOf({
-    book: PropTypes.shape({
-      id: PropTypes.number,
-      cover: PropTypes.shape({
-        url: PropTypes.string,
-      }),
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      isbn: PropTypes.string,
       title: PropTypes.string,
-      author: PropTypes.arrayOf(PropTypes.string),
-    }),
-  }),
-};
-
-List.defaultProps = {
-  data: [],
+      synopsis: PropTypes.string,
+      genre: PropTypes.string,
+      publishing_company: PropTypes.string,
+      pages: PropTypes.string,
+      authors: PropTypes.arrayOf(PropTypes.string),
+      cover: PropTypes.shape({
+        id: PropTypes.string,
+        url: PropTypes.string,
+        path: PropTypes.string,
+      }),
+    })
+  ).isRequired,
 };
 
 export default List;
