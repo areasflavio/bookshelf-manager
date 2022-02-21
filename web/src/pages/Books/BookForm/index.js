@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 
@@ -11,10 +12,13 @@ import FileInput from '../../../components/FileInput';
 import InputMask from '../../../components/InputMask';
 import TextAreaInput from '../../../components/TextAreaInput';
 
+import { getBooksRequest } from '../../../store/modules/books/actions';
+
 import { StyledForm } from '../../../styles/form';
 import { Container, LineGroup } from './styles';
 
 function BookForm() {
+  const dispatch = useDispatch();
   const formRef = useRef(null);
 
   const { id } = useParams();
@@ -56,7 +60,8 @@ function BookForm() {
 
       const submitData = {
         ...data,
-        cover_id: Number(data.cover_id) || bookData.cover.id,
+        cover_id: data.cover_id,
+        // cover_id: data.cover_id || bookData.cover.id,
         authors: data.authors.split(','),
       };
 
@@ -69,6 +74,8 @@ function BookForm() {
 
       toast.success('Book registered with success!');
       history.push('/dashboard');
+
+      dispatch(getBooksRequest());
     } catch (err) {
       const validationErrors = {};
 
@@ -79,7 +86,25 @@ function BookForm() {
         formRef.current.setErrors(validationErrors);
       }
 
+      console.log(err);
+
       toast.error('Operation error, please check your data');
+    }
+  }
+
+  async function handleDeleteBook() {
+    const result = window.confirm('Are you sure you want to delete this book?');
+
+    if (result) {
+      try {
+        await api.delete(`/books/${id}`);
+
+        toast.success('Book deleted with success!');
+        history.push('/dashboard');
+        dispatch(getBooksRequest());
+      } catch (err) {
+        toast.error('Operation error, try again.');
+      }
     }
   }
 
@@ -126,7 +151,7 @@ function BookForm() {
             </button>
           </LineGroup>
           {id && (
-            <button type="button" className="delete" onClick={() => {}}>
+            <button type="button" className="delete" onClick={handleDeleteBook}>
               Delete book
             </button>
           )}
