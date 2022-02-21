@@ -1,10 +1,28 @@
 import File from '../models/File';
 
+import imgbbUploader from 'imgbb-uploader';
+
 class FileController {
   async store(request, response) {
-    const { originalname: name, filename: path } = request.file;
+    const { path } = request.file;
 
-    const file = await File.create({ name, path });
+    let file;
+
+    try {
+      const response = await imgbbUploader(process.env.IMGBB_API_KEY, path);
+
+      const { image } = response;
+
+      file = await File.findOne({
+        where: { name: image.name },
+      });
+
+      if (!file) {
+        file = await File.create({ name: image.name, path: image.url });
+      }
+    } catch (err) {
+      return response.status(400).json({ error: err.message });
+    }
 
     return response.status(201).json(file);
   }
